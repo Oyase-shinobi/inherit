@@ -8,7 +8,7 @@ use iced::{
 };
 
 mod create_plan;
-use crate::create_plan::select_plan::PlanCard;
+use crate::create_plan::{select_plan::PlanCard, time_safe_content_info::TimeSafeInfo};
 
 fn main() -> iced::Result {
     MyApp::run(Settings {
@@ -270,7 +270,23 @@ impl Sandbox for MyApp {
                 ].spacing(8.)
             ].spacing(15)
         ].spacing(24.)).width(438.);
-
+        let time_safe_info = container(
+            row![
+                Svg::from_path("assets/create-plan/info.svg").width(Length::Fixed(18.)).height(Length::Fixed(18.)),
+                column![
+                    text("Dual protection guide")
+                        .size(14)
+                        .font(Font {
+                            weight: font::Weight::Bold,
+                            ..Font::DEFAULT
+                    }),
+                    text("To use both protections, create a fail safe first, then a time safe. Fail safes guard against key loss; time safes protect against advanced threats")
+                        .size(12)
+                        .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
+                ].spacing(4)              
+            ].spacing(16)
+        ).width(1028).padding([0, 0, 0, 35]);
+        let blank_time_safe_info = container(row![]);
         // row![
         //     PlanCard::new(self.time_safe_selected, time_safe_content, MyAppMessage::TimeSafePressed),
         //     PlanCard::new(self.fail_safe_selected, fail_safe_content, MyAppMessage::FailSafePressed),
@@ -286,6 +302,7 @@ impl Sandbox for MyApp {
                 PlanCard::new(self.time_safe_selected, time_safe_content, MyAppMessage::TimeSafePressed),
                 PlanCard::new(self.fail_safe_selected, fail_safe_content, MyAppMessage::FailSafePressed),
             ].spacing(24),
+            TimeSafeInfo::new(self.time_safe_selected, time_safe_info, blank_time_safe_info, MyAppMessage::TimeSafePressed),
             button("Continue").style(
                 theme::Button::Custom(Box::new(ButtonColor {}))
                 // Color::from_rgb(255., 0., 0.)
