@@ -20,7 +20,6 @@ use crate::iced::{
 pub struct TimeSafeInfo<'a, Message, Renderer> {
     visible: bool,
     content: Element<'a, Message, Theme, Renderer>,
-    blank_content: Element<'a, Message, Theme, Renderer>,
     message: Message
 }
 
@@ -28,13 +27,11 @@ impl<'a, Message, Renderer> TimeSafeInfo<'a, Message, Renderer> {
     pub fn new(
         visible: bool,
         content: impl Into<Element<'a, Message, Theme, Renderer>>,
-        blank_content: impl Into<Element<'a, Message, Theme, Renderer>>,
         message: Message
     ) -> Self {
         Self { 
             visible,
             content: content.into(),
-            blank_content: blank_content.into(),
             message
         }
     }
@@ -52,14 +49,8 @@ where
     }
 
     fn diff(&self, tree: &mut Tree) {
-        match self.visible {
-            true => {
-                tree.diff_children(&[&self.content]);
-            },
-            false => {
-                tree.diff_children(&[&self.blank_content]);
-            }
-        }
+        tree.diff_children(&[&self.content]);
+
     }
 
     fn layout(
@@ -101,29 +92,32 @@ where
                     Quad {
                         bounds: layout.bounds(),
                         border: Border {
-                            color: Color::from_rgb(255. / 255., 249. / 255., 223. / 255.),
+                            color: Color::from_rgb(250. / 255., 234. / 255., 171. / 255.),
                             width: 1.,
                             radius: 16.0.into(),
                         },
                         shadow: Shadow::default(),
                     },
-                    Color::from_rgb(250. / 255., 234. / 255., 171.),
+                    Color::from_rgb(255. / 255., 249. / 255., 223.),
                 );
+                match state.children.len() {
+                    0 => {},
+                    _ => self.content.as_widget().draw(
+                        &state.children[0],
+                        renderer,
+                        theme,
+                        style,
+                        layout.children().next().unwrap(),
+                        cursor,
+                        viewport
+                    )
+                }
             }
 
             false => {
             }
         }
 
-        self.content.as_widget().draw(
-            &state.children[0],
-            renderer,
-            theme,
-            style,
-            layout.children().next().unwrap(),
-            cursor,
-            viewport
-        )
     }
 
     fn on_event(

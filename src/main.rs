@@ -1,6 +1,6 @@
 use iced::{
     self, Sandbox, Settings, Length, Font, Color, Background, Border, Shadow, Padding, Alignment, Gradient, theme, window, Size,
-    widget::{container, container::Appearance, Svg, column, row, text, horizontal_rule, text::Shaping, button, Theme},
+    widget::{container, container::Appearance, Svg, column, row, text, horizontal_rule, text::Shaping, button, Theme, mouse_area},
     font,
     alignment::Vertical,
     gradient::{Linear, ColorStop},
@@ -33,12 +33,14 @@ enum MyAppMessage {
     // GoToSelectPlanType(SelectPlanTypeMessage),
     // GoToSetupPlan(SetupPlanTypeMessage),
     TimeSafePressed,
-    FailSafePressed
+    FailSafePressed,
+    AlertCloseBtnPressed
 }
 
 struct MyApp {
     time_safe_selected: bool,
-    fail_safe_selected: bool
+    fail_safe_selected: bool,
+    time_safe_alert_visible: bool
 }
 
 impl Sandbox for MyApp {
@@ -48,7 +50,8 @@ impl Sandbox for MyApp {
         // Self { page: Page::A }
         Self {
             time_safe_selected: false,
-            fail_safe_selected: false
+            fail_safe_selected: false,
+            time_safe_alert_visible: false
         }
     }
 
@@ -64,7 +67,15 @@ impl Sandbox for MyApp {
         match message {
             MyAppMessage::TimeSafePressed => {
                 self.time_safe_selected = !self.time_safe_selected;
+                if self.time_safe_selected {
+                    self.time_safe_alert_visible = true;
+                } else {
+                    self.time_safe_alert_visible = false;
+                }
                 self.fail_safe_selected = false;
+            }
+            MyAppMessage::AlertCloseBtnPressed => {
+                self.time_safe_alert_visible = false;
             }
             _ => {
                 self.time_safe_selected = false;
@@ -270,44 +281,211 @@ impl Sandbox for MyApp {
                 ].spacing(8.)
             ].spacing(15)
         ].spacing(24.)).width(438.);
-        let time_safe_info = container(
-            row![
-                Svg::from_path("assets/create-plan/info.svg").width(Length::Fixed(18.)).height(Length::Fixed(18.)),
-                column![
-                    text("Dual protection guide")
-                        .size(14)
-                        .font(Font {
-                            weight: font::Weight::Bold,
-                            ..Font::DEFAULT
-                    }),
-                    text("To use both protections, create a fail safe first, then a time safe. Fail safes guard against key loss; time safes protect against advanced threats")
-                        .size(12)
-                        .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
-                ].spacing(4)              
-            ].spacing(16)
-        ).width(1028).padding([0, 0, 0, 35]);
-        let blank_time_safe_info = container(row![]);
+        let dyn_space = match self.time_safe_alert_visible {
+            true => 24,
+            false => 0
+        };
+        let time_safe_info = match self.time_safe_alert_visible {
+            true => row![
+                row![
+                    Svg::from_path("assets/create-plan/info.svg").width(Length::Fixed(18.)).height(Length::Fixed(18.)),
+                    column![
+                        text("Dual protection guide")
+                            .size(14)
+                            .font(Font {
+                                weight: font::Weight::Bold,
+                                ..Font::DEFAULT
+                        }).style(Color::from_rgb(0. / 255., 0. / 255., 0. / 255.)),
+                        text("To use both protections, create a fail safe first, then a time safe. Fail safes guard against key loss; time safes protect against advanced threats")
+                            .size(12.5)
+                            .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
+                            .font(Font {
+                                weight: font::Weight::Medium,
+                                ..Font::DEFAULT
+                        })
+                    ].spacing(4)              
+                ].spacing(16).align_items(Alignment::Start),
+                mouse_area(
+                    Svg::from_path("assets/create-plan/cross_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
+                ).on_press(MyAppMessage::AlertCloseBtnPressed)
+            ].spacing(150).width(1028).padding([16, 16, 16, 35]).align_items(Alignment::Start),
+            false => row!("").height(0)
+        };
+            
         // row![
         //     PlanCard::new(self.time_safe_selected, time_safe_content, MyAppMessage::TimeSafePressed),
         //     PlanCard::new(self.fail_safe_selected, fail_safe_content, MyAppMessage::FailSafePressed),
         // ].spacing(24).into()
-
         container(column![
-            text("Create new plan").size(32).font(Font {
-                weight: font::Weight::Bold,
-                ..Font::DEFAULT
-            }),
-            text("Select plan type").size(14),
             row![
-                PlanCard::new(self.time_safe_selected, time_safe_content, MyAppMessage::TimeSafePressed),
-                PlanCard::new(self.fail_safe_selected, fail_safe_content, MyAppMessage::FailSafePressed),
-            ].spacing(24),
-            TimeSafeInfo::new(self.time_safe_selected, time_safe_info, blank_time_safe_info, MyAppMessage::TimeSafePressed),
-            button("Continue").style(
-                theme::Button::Custom(Box::new(ButtonColor {}))
-                // Color::from_rgb(255., 0., 0.)
-            ).padding([12., 83.])
-        ].align_items(Alignment::Center).spacing(24))
+                row![
+                    container(row![
+                        Svg::from_path("assets/create-plan/home.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                        text("Dashboard").size(14),
+                    ].spacing(4).padding([4., 16., 4., 16.]).align_items(Alignment::Center)).style(
+                        Appearance {
+                            text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
+                            background: Some(Background::Color(Color::from_rgba(255. / 255., 255. / 255., 255. / 255., 1.))),
+                            border: Border {
+                                color: Color::from_rgba (
+                                    236. / 255.,
+                                    238. / 255.,
+                                    242. /255.,
+                                    100.
+                                ),
+                                width: 1.,
+                                radius: 10.0.into()
+                            },
+                            shadow: Shadow::default()
+                        }
+                    ),
+                    Svg::from_path("assets/create-plan/arrow.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                    container(row![
+                        text("Create new plan").size(14),
+                    ].padding([4., 16., 4., 16.])).style(
+                        Appearance {
+                            text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
+                            background: Some(Background::Color(Color::from_rgba(255. / 255., 255. / 255., 255. / 255., 1.))),
+                            border: Border {
+                                color: Color::from_rgba (
+                                    236. / 255.,
+                                    238. / 255.,
+                                    242. /255.,
+                                    100.
+                                ),
+                                width: 1.,
+                                radius: 10.0.into()
+                            },
+                            shadow: Shadow::default()
+                        }
+                    )
+                ].spacing(8).align_items(Alignment::Center),
+                row![
+                    container(row![
+                        row![
+                            Svg::from_path("assets/create-plan/wallet.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
+                            text("ox0...s8d").size(16)
+                        ].spacing(4).align_items(Alignment::Center),
+                        container(row![
+                            Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                            text("0.234 BTC").size(14)
+                        ].spacing(2.5).padding([4., 10.0, 4., 6.0]).align_items(Alignment::Center)).style(
+                            Appearance {
+                                text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
+                                background: Some(Background::Color(Color::from_rgba(255. / 255., 255. / 255., 255. / 255., 1.))),
+                                border: Border {
+                                    color: Color::from_rgba (
+                                        236. / 255.,
+                                        238. / 255.,
+                                        242. /255.,
+                                        100.
+                                    ),
+                                    width: 1.,
+                                    radius: 10.0.into()
+                                },
+                                shadow: Shadow::default()
+                            }
+                        ),
+                        Svg::from_path("assets/create-plan/below_arrow.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                    ].spacing(8.0).padding([5.5, 8.0, 5.5, 8.0]).align_items(Alignment::Center)).style(
+                        Appearance {
+                            text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
+                            background: Some(Background::Color(Color::from_rgba(255. / 255., 255. / 255., 255. / 255., 1.))),
+                            border: Border {
+                                color: Color::from_rgba (
+                                    236. / 255.,
+                                    238. / 255.,
+                                    242. /255.,
+                                    100.
+                                ),
+                                width: 1.,
+                                radius: 10.0.into()
+                            },
+                            shadow: Shadow::default()
+                        }
+                    ),
+                    container(row![
+                        Svg::from_path("assets/create-plan/bell.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
+                    ].padding(8)).style(
+                        Appearance {
+                            text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
+                            background: Some(Background::Color(Color::from_rgba(255. / 255., 255. / 255., 255. / 255., 1.))),
+                            border: Border {
+                                color: Color::from_rgba (
+                                    236. / 255.,
+                                    238. / 255.,
+                                    242. /255.,
+                                    100.
+                                ),
+                                width: 1.,
+                                radius: 10.0.into()
+                            },
+                            shadow: Shadow::default()
+                        }
+                    ),
+                    container(row![
+                        Svg::from_path("assets/create-plan/triple_dot.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
+                    ].padding(8)).style(
+                        Appearance {
+                            text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
+                            background: Some(Background::Color(Color::from_rgba(255. / 255., 255. / 255., 255. / 255., 1.))),
+                            border: Border {
+                                color: Color::from_rgba (
+                                    236. / 255.,
+                                    238. / 255.,
+                                    242. /255.,
+                                    100.
+                                ),
+                                width: 1.,
+                                radius: 10.0.into()
+                            },
+                            shadow: Shadow::default()
+                        }
+                    )
+                ].spacing(8).align_items(Alignment::Center)
+            ].spacing(684).padding([7.0, 12.0, 7.0, 88.]).align_items(Alignment::Center) ,
+            column![
+                text("Create new plan").size(32).font(Font {
+                    weight: font::Weight::Bold,
+                    ..Font::DEFAULT
+                }),
+                row![
+                    row![
+                        Svg::from_path("assets/create-plan/selected_1.svg").width(Length::Fixed(18.)).height(Length::Fixed(18.)),
+                        text("Select plan type").size(14),
+                    ].spacing(8),
+                    Svg::from_path("assets/create-plan/arrow.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                    row![
+                        Svg::from_path("assets/create-plan/unselected_2.svg").width(Length::Fixed(18.)).height(Length::Fixed(18.)),
+                        text("Setup plan").size(14),
+                    ].spacing(8),
+                    Svg::from_path("assets/create-plan/arrow.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                    row![
+                        Svg::from_path("assets/create-plan/unselected_3.svg").width(Length::Fixed(18.)).height(Length::Fixed(18.)),
+                        text("Review and confirm").size(14),
+                    ].spacing(8),
+                ].spacing(16.).align_items(Alignment::Center).width(508.).height(21.),
+                column![
+                    row![
+                        PlanCard::new(self.time_safe_selected, time_safe_content, MyAppMessage::TimeSafePressed),
+                        PlanCard::new(self.fail_safe_selected, fail_safe_content, MyAppMessage::FailSafePressed),
+                    ].spacing(24),
+                    container(time_safe_info).style(
+                        Appearance {
+                            text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
+                            background: Some(Background::Color(Color::from_rgb(255./ 255., 249./ 255., 223.))),
+                            border: Border { color: Color::from_rgb(250. / 255., 234. / 255., 171. / 255.), width: 1., radius: 16.0.into() },
+                            shadow: Shadow::default(),
+                        }
+                    )
+                ].spacing(dyn_space).align_items(Alignment::Center),
+                button("Continue").style(
+                    theme::Button::Custom(Box::new(ButtonColor {}))
+                    // Color::from_rgb(255., 0., 0.)
+                ).padding([12., 83.])
+            ].padding([10., 0., 0., 0.]).align_items(Alignment::Center).spacing(24),
+        ].align_items(Alignment::Center)
+        )
         .style(Appearance {
             background: Some(Background::Gradient(Gradient::Linear(Linear {
                 angle: 2.6.into(),
@@ -318,7 +496,7 @@ impl Sandbox for MyApp {
                             r: 53.0 / 255.0,
                             g: 229.0 / 255.0,
                             b: 171.0 / 255.0,
-                            a: 1.0,
+                            a: 0.15,
                         },
                     }),
                     Some(ColorStop {
@@ -327,7 +505,7 @@ impl Sandbox for MyApp {
                             r: 62.0 / 255.0,
                             g: 112.0 / 255.0,
                             b: 253.0 / 255.0,
-                            a: 1.0,
+                            a: 0.15,
                         },
                     }),
                     Some(ColorStop {
@@ -336,7 +514,7 @@ impl Sandbox for MyApp {
                             r: 135.0 / 255.0,
                             g: 85.0 / 255.0,
                             b: 241.0 / 255.0,
-                            a: 1.0,
+                            a: 0.15,
                         },
                     }),
                     None, None, None, None, None,
@@ -365,7 +543,7 @@ impl<> button::StyleSheet for ButtonColor {
                             r: 4.0 / 255.0,
                             g: 47.0 / 255.0,
                             b: 104.0 / 255.0,
-                            a: 1.0,
+                            a: 100.0,
                         },
                     }),
                     Some(ColorStop {
@@ -374,7 +552,7 @@ impl<> button::StyleSheet for ButtonColor {
                             r: 2.0 / 255.0,
                             g: 84.0 / 255.0,
                             b: 191.0 / 255.0,
-                            a: 1.0,
+                            a: 100.0,
                         },
                     }),
                     None,
@@ -387,6 +565,7 @@ impl<> button::StyleSheet for ButtonColor {
                 ]
             }))),
             border: Border::with_radius(Radius::from(12.0)),
+            text_color: Color { r: 1., g: 1., b: 1., a: 100. },
             ..style.active(&theme::Button::Primary)
         }
     }
