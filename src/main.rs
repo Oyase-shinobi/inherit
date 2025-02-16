@@ -9,10 +9,7 @@ use crate::state::State;
 use crate::update::update;
 
 use iced::{
-    self, Sandbox, Settings, Color, Background, Border, Gradient, theme, window, Size,
-    widget::{ button, Theme, text_input},
-    gradient::{Linear, ColorStop},
-    border::Radius,
+    self, border::Radius, executor, gradient::{ColorStop, Linear}, theme, time::{self, Duration}, widget::{ button, text_input, Theme}, window, Application, Background, Border, Color, Command, Gradient, Settings, Size, Subscription
 };
 use view::view;
 
@@ -44,27 +41,43 @@ struct MyApp {
 //     status: String
 // }
 
-impl Sandbox for MyApp {
+impl Application for MyApp {
+    type Executor = executor::Default;
     type Message = MyAppMessage;
+    type Theme = iced::Theme;
+    type Flags = ();
 
-    fn new() -> Self {
+    fn new(_flags: Self::Flags) -> (Self, iced::Command<Self::Message>) {
         // Self { page: Page::A }
-        Self {
+        (Self {
             ..Default::default()
-        }
+        }, Command::none())
     }
 
     fn title(&self) -> String {
         String::from("Inherit Wallet App")
     }
 
-    fn update(&mut self, message: MyAppMessage) {
-        update(&mut self.state, message)
+    fn update(&mut self, message: MyAppMessage) -> iced::Command<MyAppMessage> {
+        update(&mut self.state, message);
+        Command::none()
     }
 
     fn view(&self) -> iced::Element<MyAppMessage> {
         view(&self.state)
     }
+
+    fn subscription(&self) -> iced::Subscription<MyAppMessage> {
+        match self.state.is_loading_page {
+            true => {
+                time::every(Duration::from_secs(5)).map(|_| MyAppMessage::GoToFifthCreateNewPlanPage)
+            },
+            false => {
+                Subscription::none()
+            }
+        }
+    }
+    
 }
 
 struct BackButtonColor {}

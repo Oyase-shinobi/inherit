@@ -5,6 +5,7 @@ pub enum Page {
     SecondCreateNewPlanPage,
     ThirdCreateNewPlanPage,
     ForthCreateNewPlanPage,
+    FifthCreateNewPlanPage,
 }
 
 #[derive(Debug)]
@@ -23,8 +24,7 @@ pub struct State {
     pub sixth_is_checked: bool,
     pub privacy_is_checked: bool,
     pub understand_is_checked: bool,
-    pub tick_count: usize, // Counts time ticks
-    pub trigger_time_tick: bool, // Whether to start counting
+    pub is_loading_page: bool
 }
 
 impl Default for State {
@@ -44,8 +44,7 @@ impl Default for State {
             sixth_is_checked: true,
             privacy_is_checked: false,
             understand_is_checked: false,
-            tick_count: 0,
-            trigger_time_tick: false
+            is_loading_page: false
         }
     }
 }

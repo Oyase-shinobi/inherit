@@ -9,6 +9,7 @@ pub enum MyAppMessage {
     GoToSecondCreateNewPlanBtnPressed,
     GoToThirdCreateNewPlanBtnPressed,
     GoToForthCreateNewPlanBtnPressed,
+    GoToFifthCreateNewPlanPage,
     PlanNameContentChanged(String),
     TogglerUxtos(bool),
     RecommendAlertCloseBtnPressed,

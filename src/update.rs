@@ -30,8 +30,11 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         }
         MyAppMessage::GoToForthCreateNewPlanBtnPressed => {
             state.current_page = Page::ForthCreateNewPlanPage;
-            state.trigger_time_tick = true; // Start countdown
-            state.tick_count = 0; // Reset tick counter
+            state.is_loading_page = true;
+        }
+        MyAppMessage::GoToFifthCreateNewPlanPage => {
+            state.current_page = Page::FifthCreateNewPlanPage;
+            state.is_loading_page = false;
         }
         MyAppMessage::PlanNameContentChanged(content) => {
             state.plan_name = content;
