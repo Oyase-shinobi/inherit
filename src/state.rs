@@ -1,3 +1,5 @@
+use crate::widgets::calendar::Calendar;
+
 #[derive(Debug, PartialEq, Clone)]
 
 pub enum Page {
@@ -24,11 +26,17 @@ pub struct State {
     pub sixth_is_checked: bool,
     pub privacy_is_checked: bool,
     pub understand_is_checked: bool,
-    pub is_loading_page: bool
+    pub is_loading_page: bool,
+    pub calendars: Vec<Calendar>
 }
 
 impl Default for State {
     fn default() -> Self {
+        let calendar = Calendar::new();
+        let mut calendars = Vec::new();
+        calendars.push(calendar);
+        calendars.push(calendar);
+        calendars.push(calendar);
         Self {
             time_safe_selected: false,
             fail_safe_selected: false,
@@ -44,7 +52,8 @@ impl Default for State {
             sixth_is_checked: true,
             privacy_is_checked: false,
             understand_is_checked: false,
-            is_loading_page: false
+            is_loading_page: false,
+            calendars
         }
     }
 }

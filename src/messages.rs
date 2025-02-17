@@ -1,3 +1,5 @@
+use crate::widgets::calendar::CalendarMessage;
+
 #[derive(Debug, Clone)]
 pub enum MyAppMessage {
     // GoToSelectPlanType(SelectPlanTypeMessage),
@@ -20,4 +22,5 @@ pub enum MyAppMessage {
     ToggleCheckbox5(bool),
     TogglePrivacyCheckbox(bool),
     ToggleUnderstandCheckbox(bool),
+    CalendarMessage(usize, CalendarMessage)
 }

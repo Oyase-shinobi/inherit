@@ -3,10 +3,12 @@ mod state;
 mod update;
 mod view;
 mod create_plan;
-
+mod widgets;
+mod pages;
 use crate::messages::MyAppMessage;
 use crate::state::State;
 use crate::update::update;
+
 
 use iced::{
     self, border::Radius, executor, gradient::{ColorStop, Linear}, theme, time::{self, Duration}, widget::{ button, text_input, Theme}, window, Application, Background, Border, Color, Command, Gradient, Settings, Size, Subscription

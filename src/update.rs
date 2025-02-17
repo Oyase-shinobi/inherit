@@ -71,5 +71,10 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         MyAppMessage::ToggleUnderstandCheckbox(is_checked) => {
             state.understand_is_checked = is_checked
         }
+        MyAppMessage::CalendarMessage(i, calendar_message) => {
+            if let Some(calendar) = state.calendars.get_mut(i) {
+                calendar.update(calendar_message);
+            }
+        }
     }
 }
