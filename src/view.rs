@@ -215,7 +215,7 @@ pub fn view(state: &State) -> iced::Element<MyAppMessage> {
                             weight: font::Weight::Bold,
                             ..Font::DEFAULT
                     }).style(Color::from_rgb(0. / 255., 0. / 255., 0. / 255.)),
-                    text("To use both protections, create a fail safe first, then a time safe. Fail safes guard against key loss; time safes protect against advanced threats")
+                    text("To use both protections, create a fail safe first, then a time safe. Fail safes guard against key loss; time safes protect against advanced\nthreats")
                         .size(12.5)
                         .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
                         .font(Font {
@@ -2481,7 +2481,7 @@ pub fn view(state: &State) -> iced::Element<MyAppMessage> {
                                 ).padding([12., 20.]).on_press(MyAppMessage::GoToSecondCreateNewPlanBtnPressed)).width(Length::Fill),
                                 container(button("Go to dashboard").style(
                                     theme::Button::Custom(Box::new(BackButtonColor {}))
-                                ).padding([12., 20.]).on_press(MyAppMessage::GoToFirstCreateNewPlanBtnPressed)),
+                                ).padding([12., 20.]).on_press(MyAppMessage::GoToThirdCreateNewPlanBtnPressed)),
                             ].width(409),
                         ].spacing(32).align_items(Alignment::Center)).padding([40., 80.]).style(
                             Appearance {
@@ -2602,7 +2602,7 @@ pub fn view(state: &State) -> iced::Element<MyAppMessage> {
                                         text("Jan 3, 2026, 12:00 AM").size(16).line_height(1.5).style(
                                             Color::from_rgb(8. /255., 15. /255., 33. /255.)
                                         ).font(Font {
-                                            weight: font::Weight::Semibold,
+                                            weight: font::Weight::Medium,
                                             ..Font::DEFAULT
                                         }),
                                         text("UTC").size(16).line_height(1.5).style(
@@ -2611,7 +2611,7 @@ pub fn view(state: &State) -> iced::Element<MyAppMessage> {
                                             weight: font::Weight::Medium,
                                             ..Font::DEFAULT
                                         }),
-                                    ].align_items(Alignment::Center).spacing(4),
+                                    ].align_items(Alignment::End).spacing(4),
                                     
                                     container(row![
                                         Svg::from_path("assets/create-plan/calendar_plus.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
