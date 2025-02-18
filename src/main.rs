@@ -11,7 +11,7 @@ use crate::update::update;
 
 
 use iced::{
-    self, border::Radius, executor, gradient::{ColorStop, Linear}, theme, time::{self, Duration}, widget::{ button, text_input, Theme}, window, Application, Background, Border, Color, Command, Gradient, Settings, Size, Subscription
+    self, border::Radius, executor, gradient::{ColorStop, Linear}, theme, time::{self, Duration}, widget::{ button, text_input, Theme}, window, Application, Background, Border, Color, Command, Gradient, Settings, Size
 };
 use view::view;
 

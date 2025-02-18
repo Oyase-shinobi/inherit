@@ -1,12 +1,12 @@
 use crate::messages::MyAppMessage;
-use crate::widgets::balance_card::{self, BalanceCard};
+use crate::widgets::balance_card::BalanceCard;
 use crate::widgets::filter_btn_group::ButtonGroup;
 use crate::{state::State, ContinueButtonColor};
 
-use iced::{theme, Renderer};
+use iced::theme;
 use iced::{
     self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient,
-    widget::{container, container::Appearance, Svg, column, row, text, Theme, button, scrollable::{Direction, Properties}, Scrollable},
+    widget::{container, container::Appearance, Svg, column, row, text, button, scrollable::{Direction, Properties}, Scrollable},
     font,
     gradient::{Linear, ColorStop},
     Element,
