@@ -25,7 +25,6 @@ pub fn view(state: &State) -> iced::Element<MyAppMessage> {
 }
 
 struct BackButtonColor {}
-
 impl<> button::StyleSheet for BackButtonColor {
     type Style = Theme;
 
