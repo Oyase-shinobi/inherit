@@ -39,10 +39,8 @@ impl<> button::StyleSheet for BackButtonColor {
 }
 
 struct ContinueButtonColor {}
-
 impl<> button::StyleSheet for ContinueButtonColor {
     type Style = Theme;
-
     fn active(&self, style: &Self::Style) -> button::Appearance {
         button::Appearance {
             background: Some(Background::Gradient(Gradient::Linear(Linear {
