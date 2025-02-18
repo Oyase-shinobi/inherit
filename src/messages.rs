@@ -1,4 +1,4 @@
-use crate::widgets::calendar::CalendarMessage;
+use crate::widgets::{calendar::CalendarMessage, filter_btn_group::Filter};
 
 #[derive(Debug, Clone)]
 pub enum MyAppMessage {
@@ -12,6 +12,7 @@ pub enum MyAppMessage {
     GoToThirdCreateNewPlanBtnPressed,
     GoToForthCreateNewPlanBtnPressed,
     GoToFifthCreateNewPlanPage,
+    GoToDashboardPage,
     PlanNameContentChanged(String),
     TogglerUxtos(bool),
     RecommendAlertCloseBtnPressed,
@@ -22,5 +23,7 @@ pub enum MyAppMessage {
     ToggleCheckbox5(bool),
     TogglePrivacyCheckbox(bool),
     ToggleUnderstandCheckbox(bool),
+    FilterSelected(Filter),
+    Tick,
     CalendarMessage(usize, CalendarMessage)
 }

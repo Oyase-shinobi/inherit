@@ -36,6 +36,9 @@ pub fn update(state: &mut State, message: MyAppMessage) {
             state.current_page = Page::FifthCreateNewPlanPage;
             state.is_loading_page = false;
         }
+        MyAppMessage::GoToDashboardPage => {
+            state.current_page = Page::DashboardPage;
+        }
         MyAppMessage::PlanNameContentChanged(content) => {
             state.plan_name = content;
         }
@@ -75,6 +78,12 @@ pub fn update(state: &mut State, message: MyAppMessage) {
             if let Some(calendar) = state.calendars.get_mut(i) {
                 calendar.update(calendar_message);
             }
+        }
+        MyAppMessage::FilterSelected(filter) => state.filter = filter,
+        MyAppMessage::Tick => {
+            state.countdown.update();
+            state.countdown1.update();
+            state.countdown2.update();
         }
     }
 }

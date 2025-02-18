@@ -1,4 +1,6 @@
-use crate::widgets::calendar::Calendar;
+use std::time::{Duration, SystemTime};
+
+use crate::widgets::{calendar::Calendar, countdown_timer::CountdownTimer, filter_btn_group::Filter};
 
 #[derive(Debug, PartialEq, Clone)]
 
@@ -8,6 +10,7 @@ pub enum Page {
     ThirdCreateNewPlanPage,
     ForthCreateNewPlanPage,
     FifthCreateNewPlanPage,
+    DashboardPage,
 }
 
 #[derive(Debug)]
@@ -27,7 +30,11 @@ pub struct State {
     pub privacy_is_checked: bool,
     pub understand_is_checked: bool,
     pub is_loading_page: bool,
-    pub calendars: Vec<Calendar>
+    pub calendars: Vec<Calendar>,
+    pub filter: Filter,
+    pub countdown: CountdownTimer,
+    pub countdown1: CountdownTimer,
+    pub countdown2: CountdownTimer,
 }
 
 impl Default for State {
@@ -53,7 +60,11 @@ impl Default for State {
             privacy_is_checked: false,
             understand_is_checked: false,
             is_loading_page: false,
-            calendars
+            calendars,
+            filter: Filter::Owner,
+            countdown: CountdownTimer::new(SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9), "Unlock date", "purple"),
+            countdown1: CountdownTimer::new(SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9), "Check-in time remaining", "purple"),
+            countdown2: CountdownTimer::new(SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9), "Grace period", "gold"),
         }
     }
 }

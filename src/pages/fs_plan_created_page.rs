@@ -255,7 +255,7 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                             ).padding([12., 20.]).on_press(MyAppMessage::GoToSecondCreateNewPlanBtnPressed)).width(Length::Fill),
                             container(button("Go to dashboard").style(
                                 theme::Button::Custom(Box::new(BackButtonColor {}))
-                            ).padding([12., 20.]).on_press(MyAppMessage::GoToThirdCreateNewPlanBtnPressed)),
+                            ).padding([12., 20.]).on_press(MyAppMessage::GoToDashboardPage)),
                         ].width(409),
                     ].spacing(32).align_items(Alignment::Center)).padding([40., 80.]).style(
                         Appearance {

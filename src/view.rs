@@ -1,4 +1,5 @@
 use crate::messages::MyAppMessage;
+use crate::pages::dashboard::dashboard;
 use crate::pages::fs_plan_created_page::fs_plan_created_page;
 use crate::pages::generation::generation;
 use crate::pages::review_confirm_page::review_confirm_page;
@@ -18,7 +19,8 @@ pub fn view(state: &State) -> iced::Element<MyAppMessage> {
         Page::SecondCreateNewPlanPage => selected_setup_page(state),
         Page::ThirdCreateNewPlanPage => review_confirm_page(state),
         Page::ForthCreateNewPlanPage => generation(),
-        Page::FifthCreateNewPlanPage => fs_plan_created_page(state)
+        Page::FifthCreateNewPlanPage => fs_plan_created_page(state),
+        Page::DashboardPage => dashboard(state)
     }
 }
 

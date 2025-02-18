@@ -75,7 +75,7 @@ impl Application for MyApp {
                 time::every(Duration::from_secs(5)).map(|_| MyAppMessage::GoToFifthCreateNewPlanPage)
             },
             false => {
-                Subscription::none()
+                time::every(Duration::from_secs(1)).map(|_| MyAppMessage::Tick)
             }
         }
     }
