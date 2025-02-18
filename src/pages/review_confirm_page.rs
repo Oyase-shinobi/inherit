@@ -910,7 +910,7 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                     ).padding([12., 20.]).on_press(MyAppMessage::GoToForthCreateNewPlanBtnPressed)
                 ].width(840),
                 
-            ].padding([10., 0., 0., 0.]).align_items(Alignment::Center).spacing(24)).height(1080).direction(Direction::Vertical(Properties::new().scroller_width(0).width(0))),
+            ].padding([10., 0., 80., 0.]).align_items(Alignment::Center).spacing(24)).height(1080).direction(Direction::Vertical(Properties::new().scroller_width(0).width(0))),
         ].align_items(Alignment::Center)
     ).style(Appearance {
         background: Some(Background::Gradient(Gradient::Linear(Linear {
