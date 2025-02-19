@@ -92,7 +92,7 @@ impl Default for State {
             month,
             year,
             timezone: "PTC".to_string(),
-            is_timezone_pick_list_visible: true
+            is_timezone_pick_list_visible: false
         }
     }
 }
