@@ -1,17 +1,19 @@
 use crate::messages::MyAppMessage;
 use crate::state::State;
+use crate::widgets::calendar::Calendar;
 use crate::{BackButtonColor, ContinueButtonColor, CustomTextInputStyle};
 use iced::advanced::graphics::core::Element;
 use iced::alignment::Vertical;
 use iced::Renderer;
 use iced::{
     self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient, theme,
-    widget::{container, container::Appearance, Svg, column, row, text, button, Theme, mouse_area, text_input, tooltip, checkbox, scrollable::{Direction, Properties}, Scrollable, toggler},
+    widget::{container, container::Appearance, Svg, column, Column, row, text, button, Theme, mouse_area, text_input, tooltip, checkbox, scrollable::{Direction, Properties}, Scrollable, toggler},
     font,
     gradient::{Linear, ColorStop},
 };
 
 pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Theme, Renderer> {
+    let month_names = vec!["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     let recommend_alert = match state.recommend_alert_visible {
         true => row![
             row![
@@ -329,6 +331,49 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
             ].align_items(Alignment::Center).spacing(20)
         ].padding([20.0, 24.0]).spacing(16).width(760).align_items(Alignment::Start)
     };
+    let mut time_pick_list: Column<MyAppMessage> = Column::new();
+    for time in state.times.clone() {
+        let time_clone = time.clone();
+        time_pick_list = time_pick_list
+        .push(
+            mouse_area(container(row![
+                    container(text(time_clone.clone()).size(14).line_height(1.5).font(Font {
+                        weight: match state.selected_time == time_clone {
+                            true => font::Weight::Semibold,
+                            false => font::Weight::Medium
+                        },
+                        ..Font::DEFAULT
+                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(Length::Fill)),
+                    match state.selected_time == time_clone {
+                        true => Svg::from_path("assets/create-plan/blue_check.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
+                        false => Svg::new("")
+                    }
+            ].align_items(Alignment::Center).width(Length::Fill)).padding([8., 12.])).on_press(MyAppMessage::TimeSelected(time))
+        )
+        .width(Length::Fill).align_items(Alignment::Center);
+    }
+    let timezones = vec!["PTC", "EST", "CST", "MST", "UTC", "GMT", "CET", "IST", "JST", "AEST"];
+    let mut timezone_pick_list: Column<MyAppMessage> = Column::new();
+    for timezone in timezones {
+        let timezone_clone = timezone;
+        timezone_pick_list = timezone_pick_list
+        .push(
+            mouse_area(container(row![
+                    container(text(timezone_clone).size(14).line_height(1.5).font(Font {
+                        weight: match state.timezone == timezone_clone {
+                            true => font::Weight::Semibold,
+                            false => font::Weight::Medium
+                        },
+                        ..Font::DEFAULT
+                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(Length::Fill)),
+                    match state.timezone == timezone_clone {
+                        true => Svg::from_path("assets/create-plan/blue_check.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
+                        false => Svg::new("")
+                    }
+            ].align_items(Alignment::Center).width(Length::Fill)).padding([8., 12.])).on_press(MyAppMessage::TimeZoneSelected(timezone.to_string()))
+        )
+        .width(Length::Fill).align_items(Alignment::Center);
+    }
     container(
         column![
             row![
@@ -562,7 +607,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     )
                                     
                                 ].spacing(8).align_items(Alignment::Start).width(Length::Fill),
-                                false => column![""].height(0)
+                                false => Column::new().height(0)
                             },
                             
                             column![
@@ -610,8 +655,125 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                             }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
 
                             row![
-                                
-                            ].spacing(16).align_items(Alignment::Center),
+                                column![
+                                    text("Time").size(14).line_height(1.5).font(Font {
+                                        weight: font::Weight::Medium,
+                                        ..Font::DEFAULT
+                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                    mouse_area(container(row![
+                                        container(text(state.selected_time.clone()).size(14).line_height(1.5).font(Font {
+                                            weight: font::Weight::Medium,
+                                            ..Font::DEFAULT
+                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
+                                        Svg::from_path("assets/create-plan/clock.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                                    ].width(Length::Fill).align_items(Alignment::Center)).padding([10., 12.]).width(Length::Fill).height(Length::Shrink).style(
+                                        match state.is_time_pick_list_visible {
+                                            true => Appearance {
+                                                text_color: None,
+                                                background: None,
+                                                border: Border { color: Color::from_rgb(2. / 255., 84. / 255., 191. / 255.), width: 1., radius: 10.0.into() },
+                                                shadow: Shadow::default(),
+                                            },
+                                            false => Appearance {
+                                                text_color: None,
+                                                background: None,
+                                                border: Border { color: Color::from_rgb(236. / 255., 238. / 255., 242. / 255.), width: 1., radius: 10.0.into() },
+                                                shadow: Shadow::default(),
+                                            }
+                                        }
+                                        
+                                    )).on_press(MyAppMessage::TimePickListPressed),
+                                    match state.is_time_pick_list_visible {
+                                        true => container(
+                                            Scrollable::new(time_pick_list).height(270).direction(Direction::Vertical(Properties::new().scroller_width(4).width(0)))
+                                        ).padding([8., 12.]).width(Length::Fill).style(
+                                            Appearance {
+                                                text_color: None,
+                                                background: None,
+                                                border: Border { color: Color::from_rgb(236. / 255., 238. / 255., 242. / 255.), width: 1., radius: 10.0.into() },
+                                                shadow: Shadow::default(),
+                                            }
+                                        ),
+                                        false => container(column![""])
+                                    }
+                                    
+                                ].width(243).spacing(3),
+                                column![
+                                    text("Date").size(14).line_height(1.5).font(Font {
+                                        weight: font::Weight::Medium,
+                                        ..Font::DEFAULT
+                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                    mouse_area(container(row![
+                                        container(text(format!("{} {}, {}", month_names[state.month.clone() as usize - 1] , state.day.clone(), state.year.clone())).size(14).line_height(1.5).font(Font {
+                                            weight: font::Weight::Medium,
+                                            ..Font::DEFAULT
+                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
+                                        Svg::from_path("assets/create-plan/calendar.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                                    ].width(Length::Fill).align_items(Alignment::Center)).padding([10., 12.]).width(Length::Fill).height(Length::Shrink).style(
+                                        match state.is_date_pick_list_visible {
+                                            true => Appearance {
+                                                text_color: None,
+                                                background: None,
+                                                border: Border { color: Color::from_rgb(2. / 255., 84. / 255., 191. / 255.), width: 1., radius: 10.0.into() },
+                                                shadow: Shadow::default(),
+                                            },
+                                            false => Appearance {
+                                                text_color: None,
+                                                background: None,
+                                                border: Border { color: Color::from_rgb(236. / 255., 238. / 255., 242. / 255.), width: 1., radius: 10.0.into() },
+                                                shadow: Shadow::default(),
+                                            }
+                                        }
+                                        
+                                    )).on_press(MyAppMessage::DatePickListPressed),
+                                    match state.is_date_pick_list_visible {
+                                        true => Calendar::new().view(state),
+                                        false => container(column![""]).into()
+                                    }
+                                ].width(243).spacing(3),
+                                column![
+                                    text("Preferred timezone").size(14).line_height(1.5).font(Font {
+                                        weight: font::Weight::Medium,
+                                        ..Font::DEFAULT
+                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                    mouse_area(container(row![
+                                        container(text(state.timezone.clone()).size(14).line_height(1.5).font(Font {
+                                            weight: font::Weight::Medium,
+                                            ..Font::DEFAULT
+                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
+                                        Svg::from_path("assets/create-plan/below_arrow.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
+                                    ].width(Length::Fill).align_items(Alignment::Center)).padding([10., 12.]).width(Length::Fill).height(Length::Shrink).style(
+                                        match state.is_timezone_pick_list_visible {
+                                            true => Appearance {
+                                                text_color: None,
+                                                background: None,
+                                                border: Border { color: Color::from_rgb(2. / 255., 84. / 255., 191. / 255.), width: 1., radius: 10.0.into() },
+                                                shadow: Shadow::default(),
+                                            },
+                                            false => Appearance {
+                                                text_color: None,
+                                                background: None,
+                                                border: Border { color: Color::from_rgb(236. / 255., 238. / 255., 242. / 255.), width: 1., radius: 10.0.into() },
+                                                shadow: Shadow::default(),
+                                            }
+                                        }
+                                        
+                                    )).on_press(MyAppMessage::TimeZonePickListPressed),
+                                    match state.is_timezone_pick_list_visible {
+                                        true => container(
+                                            Scrollable::new(timezone_pick_list).height(270).direction(Direction::Vertical(Properties::new().scroller_width(4).width(0)))
+                                            ).padding([8., 12.]).width(Length::Fill).style(
+                                                Appearance {
+                                                    text_color: None,
+                                                    background: None,
+                                                    border: Border { color: Color::from_rgb(236. / 255., 238. / 255., 242. / 255.), width: 1., radius: 10.0.into() },
+                                                    shadow: Shadow::default(),
+                                                }
+                                            ),
+                                        false => container(column![""]).into()
+                                    }
+                                ].width(243).spacing(3)
+                            ].spacing(16).align_items(Alignment::Start),
                             container(recommend_alert).style(
                                 Appearance {
                                     text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),

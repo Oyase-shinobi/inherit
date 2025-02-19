@@ -74,16 +74,45 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         MyAppMessage::ToggleUnderstandCheckbox(is_checked) => {
             state.understand_is_checked = is_checked
         }
-        MyAppMessage::CalendarMessage(i, calendar_message) => {
-            if let Some(calendar) = state.calendars.get_mut(i) {
-                calendar.update(calendar_message);
-            }
+        MyAppMessage::TimeSelected(time) => {
+            state.selected_time = time
+        }
+        MyAppMessage::TimeZoneSelected(timezone) => {
+            state.timezone = timezone
         }
         MyAppMessage::FilterSelected(filter) => state.filter = filter,
         MyAppMessage::Tick => {
             state.countdown.update();
             state.countdown1.update();
             state.countdown2.update();
+        }
+        MyAppMessage::TimePickListPressed => {
+            state.is_time_pick_list_visible = !state.is_time_pick_list_visible
+        }
+        MyAppMessage::DatePickListPressed => {
+            state.is_date_pick_list_visible = !state.is_date_pick_list_visible
+        }
+        MyAppMessage::TimeZonePickListPressed => {
+            state.is_timezone_pick_list_visible = !state.is_timezone_pick_list_visible
+        }
+        MyAppMessage::PreviousMonth => {
+            if state.month <= 1 {
+                state.month = 12;
+                state.year -= 1;
+            } else {
+                state.month -= 1
+            }
+        }
+        MyAppMessage::NextMonth => {
+            if state.month >= 12 {
+                state.month = 1;
+                state.year += 1;
+            } else {
+                state.month += 1;
+            }
+        }
+        MyAppMessage::SelectDay(day) => {
+            state.day = day
         }
     }
 }

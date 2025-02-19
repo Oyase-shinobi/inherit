@@ -1,4 +1,4 @@
-use crate::widgets::{calendar::CalendarMessage, filter_btn_group::Filter};
+use crate::widgets::filter_btn_group::Filter;
 
 #[derive(Debug, Clone)]
 pub enum MyAppMessage {
@@ -25,5 +25,12 @@ pub enum MyAppMessage {
     ToggleUnderstandCheckbox(bool),
     FilterSelected(Filter),
     Tick,
-    CalendarMessage(usize, CalendarMessage)
+    TimeSelected(String),
+    PreviousMonth,
+    NextMonth,
+    TimePickListPressed,
+    DatePickListPressed,
+    TimeZonePickListPressed,
+    SelectDay(u8),
+    TimeZoneSelected(String)
 }

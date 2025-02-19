@@ -187,3 +187,31 @@ impl<> text_input::StyleSheet for CustomTextInputStyle {
         }
     }
 }
+
+// struct CustomPickList {}
+
+// impl pick_list::StyleSheet for CustomPickList {
+//     type Style = Theme;
+    
+//     fn active(&self, _: &Self::Style) -> pick_list::Appearance {
+//         pick_list::Appearance {
+//             text_color: Color::WHITE,
+//             background: Color::from_rgb(
+//                 0x2F as f32 / 255.0,
+//                 0x31 as f32 / 255.0,
+//                 0x36 as f32 / 255.0,
+//             ).into(),
+//             border: Border { color: Color { r: 236. /255., g: 238. /255., b: 242. /255., a: 100.0.into() }, width: 1.0, radius: Radius::from([10.0, 10.0, 10.0, 10.0]) },
+//             handle_color: Color::from_rgb(0.5, 0.5, 0.5),
+//             placeholder_color: Color::from_rgb(0.7, 0.7, 0.7),
+//         }
+//     }
+
+//     fn hovered(&self, _: &Self::Style) -> pick_list::Appearance {
+//         let active = self.active(&Theme::default());
+
+//         pick_list::Appearance {
+//             ..active
+//         }
+//     }
+// }
