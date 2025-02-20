@@ -147,7 +147,7 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                     column![
                         Svg::from_path("assets/create-plan/eliptical.svg").width(Length::Fixed(120.)).height(Length::Fixed(120.)),
                         column![
-                            text("0.235 BTC is now time-locked!").size(24).line_height(1.2).style(
+                            text(format!("{} BTC is now time-locked!", state.lock_btc_amount)).size(24).line_height(1.2).style(
                                 Color::from_rgb(0., 0., 0.)
                             ).font(Font {
                                 weight: font::Weight::Bold,
@@ -294,7 +294,7 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                                 ),
                                 container(row![
                                     Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                    text("0.234 BTC").size(16).line_height(1.5)
+                                    text(format!("{} BTC", state.lock_btc_amount)).size(16).line_height(1.5)
                                 ].spacing(4).padding([4., 6.0, 4., 4.0]).align_items(Alignment::Center)).style(
                                     Appearance {
                                         text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
@@ -411,8 +411,13 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                                 container(text(state.transaction_link.clone()).size(14).line_height(1.5).style(
                                     Color::from_rgb(42. /255., 47. /255., 53. /255.)
                                 )).width(Length::Fill),
-                                mouse_area(Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)))
-                                .on_press(MyAppMessage::TxLinkCopyBtnPressed(state.transaction_link.clone())),
+                                if state.is_tx_link_copied {
+                                    mouse_area(Svg::from_path("assets/create-plan/blue_check.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)))
+                                    .on_press(MyAppMessage::TxLinkCopyBtnPressed(state.transaction_link.clone()))
+                                } else {
+                                    mouse_area(Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)))
+                                    .on_press(MyAppMessage::TxLinkCopyBtnPressed(state.transaction_link.clone()))
+                                },
                             ].spacing(8).align_items(Alignment::Center).width(Length::Fill)).style(
                                 Appearance {
                                     text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),

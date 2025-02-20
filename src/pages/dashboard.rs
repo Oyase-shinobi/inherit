@@ -175,7 +175,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 container(column![
                                     column![
                                         text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                        text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
+                                        text(format!("{}’s active bitcoin plan for our happy future", state.plan_name)).size(16).font(Font {
                                             weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
@@ -235,7 +235,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 container(column![
                                     column![
                                         text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                        text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
+                                        text(format!("{}’s active bitcoin plan for our happy future", state.plan_name)).size(16).font(Font {
                                             weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
@@ -298,7 +298,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 container(column![
                                     column![
                                         text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                        text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
+                                        text(format!("{}’s active bitcoin plan for our happy future", state.plan_name)).size(16).font(Font {
                                             weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
@@ -376,7 +376,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 container(column![
                                     column![
                                         text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                        text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
+                                        text(format!("{}’s active bitcoin plan for our happy future", state.plan_name)).size(16).font(Font {
                                             weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
@@ -441,7 +441,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 container(column![
                                     column![
                                         text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                        text("Tom’s active bitcoin plan").size(16).font(Font {
+                                        text(format!("{}’s active bitcoin plan", state.plan_name)).size(16).font(Font {
                                             weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
@@ -501,7 +501,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                         container(column![
                                             column![
                                                 text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                                text("Tom’s active bitcoin plan").size(16).font(Font {
+                                                text(format!("{}’s active bitcoin plan", state.plan_name)).size(16).font(Font {
                                                     weight: font::Weight::Bold,
                                                     ..Font::DEFAULT
                                                 }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
@@ -561,7 +561,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                                 container(column![
                                                     column![
                                                         text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                                        text("Tom’s active bitcoin plan").size(16).font(Font {
+                                                        text(format!("{}’s active bitcoin plan", state.plan_name)).size(16).font(Font {
                                                             weight: font::Weight::Bold,
                                                             ..Font::DEFAULT
                                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
@@ -620,7 +620,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 container(column![
                                     column![
                                         column![text("Receive assets").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                        text("Tom’s active bitcoin plan").size(16).font(Font {
+                                        text(format!("{}’s active bitcoin plan", state.plan_name)).size(16).font(Font {
                                             weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.))],
@@ -667,7 +667,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                         container(column![
                                             column![
                                                 text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                                text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
+                                                text(format!("{}’s  active bitcoin plan for our happy future", state.plan_name)).size(16).font(Font {
                                                     weight: font::Weight::Bold,
                                                     ..Font::DEFAULT
                                                 }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),

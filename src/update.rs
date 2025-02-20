@@ -124,6 +124,7 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         }
         MyAppMessage::TxLinkCopyBtnPressed(tx_link) => {
             let _ = clipboard::write::<MyAppMessage>(tx_link);
+            state.is_tx_link_copied = !state.is_tx_link_copied
         }
     }
 }

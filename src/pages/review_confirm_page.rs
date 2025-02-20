@@ -198,7 +198,7 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     ].spacing(8).align_items(Alignment::Start).width(Length::Fill),
                                     container(row![
                                         Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                        text("0.234 BTC").size(16)
+                                        text(format!("{} BTC", state.lock_btc_amount)).size(16)
                                     ].spacing(2.5).padding([4., 10.0, 4., 6.0]).align_items(Alignment::Center)).style(
                                         Appearance {
                                             text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
@@ -462,7 +462,7 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     text("Bitcoin provided").size(16).line_height(1.5).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)).width(Length::Fill),
                                     container(row![
                                         Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                        text("3 BTC").size(16).line_height(1.5)
+                                        text(format!("{} BTC", state.lock_btc_amount)).size(16).line_height(1.5)
                                     ].spacing(2.5).padding([4., 6., 4., 4.0]).align_items(Alignment::Center)).style(
                                         Appearance {
                                             text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
@@ -569,7 +569,7 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     ].width(Length::Fill).spacing(4).align_items(Alignment::Start),
                                     container(row![
                                         Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                        text("2.9987 BTC").size(16).line_height(1.5)
+                                        text(format!("{} BTC", state.lock_btc_amount.parse::<f32>().unwrap() - 0.0013)).size(16).line_height(1.5)
                                     ].spacing(2.5).padding([4., 6., 4., 4.0]).align_items(Alignment::Center)).style(
                                         Appearance {
                                             text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
