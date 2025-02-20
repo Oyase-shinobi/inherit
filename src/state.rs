@@ -45,7 +45,8 @@ pub struct State {
     pub timezone: String,
     pub is_timezone_pick_list_visible: bool,
     pub month_names: Vec<String>,
-    pub lock_btc_amount: String
+    pub lock_btc_amount: String,
+    pub transaction_link: String
 }
 
 
@@ -98,7 +99,8 @@ impl Default for State {
             is_timezone_pick_list_visible: false,
             month_names: vec!["Jan".to_string(),"Feb".to_string(),"Mar".to_string(),"Apr".to_string(),"May".to_string(),"Jun".to_string(),"Jul".to_string(),"Aug".to_string(),"Sep".to_string(),"Oct".to_string(),"Nov".to_string(),"Dec".to_string()],
             lock_btc_amount: "0".to_string(),
-            beneficiary_name: "".to_string()
+            beneficiary_name: "".to_string(),
+            transaction_link: "https://www.blockchain.com/explorer/transactions/btc/f4a8f0379...".to_string()
         }
     }
 }

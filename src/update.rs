@@ -1,3 +1,5 @@
+use iced::clipboard;
+
 use crate::messages::MyAppMessage;
 use crate::state::{State, Page};
 
@@ -119,6 +121,9 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         }
         MyAppMessage::SetLockBtcAmount(amount) => {
             state.lock_btc_amount = amount
+        }
+        MyAppMessage::TxLinkCopyBtnPressed(tx_link) => {
+            let _ = clipboard::write::<MyAppMessage>(tx_link);
         }
     }
 }

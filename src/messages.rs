@@ -34,5 +34,6 @@ pub enum MyAppMessage {
     TimeZonePickListPressed,
     SelectDay(u8),
     TimeZoneSelected(String),
-    SetLockBtcAmount(String)
+    SetLockBtcAmount(String),
+    TxLinkCopyBtnPressed(String)
 }

@@ -2,6 +2,7 @@ use crate::messages::MyAppMessage;
 use crate::state::State;
 use crate::{BackButtonColor, ContinueButtonColor};
 use iced::advanced::graphics::core::Element;
+use iced::widget::mouse_area;
 use iced::Renderer;
 use iced::{
     self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient, theme,
@@ -407,10 +408,11 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                                 Svg::from_path("assets/create-plan/info_tooltip.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                             ].align_items(Alignment::Center).spacing(4),
                             container(row![
-                                container(text("https://www.blockchain.com/explorer/transactions/btc/f4a8f0379...").size(14).line_height(1.5).style(
+                                container(text(state.transaction_link.clone()).size(14).line_height(1.5).style(
                                     Color::from_rgb(42. /255., 47. /255., 53. /255.)
                                 )).width(Length::Fill),
-                                Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
+                                mouse_area(Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)))
+                                .on_press(MyAppMessage::TxLinkCopyBtnPressed(state.transaction_link.clone())),
                             ].spacing(8).align_items(Alignment::Center).width(Length::Fill)).style(
                                 Appearance {
                                     text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
