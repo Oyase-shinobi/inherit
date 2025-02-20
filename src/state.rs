@@ -42,7 +42,8 @@ pub struct State {
     pub month: u8,
     pub year: i32,
     pub timezone: String,
-    pub is_timezone_pick_list_visible: bool
+    pub is_timezone_pick_list_visible: bool,
+    pub month_names: Vec<String>
 }
 
 
@@ -92,7 +93,8 @@ impl Default for State {
             month,
             year,
             timezone: "PTC".to_string(),
-            is_timezone_pick_list_visible: false
+            is_timezone_pick_list_visible: false,
+            month_names: vec!["Jan".to_string(),"Feb".to_string(),"Mar".to_string(),"Apr".to_string(),"May".to_string(),"Jun".to_string(),"Jul".to_string(),"Aug".to_string(),"Sep".to_string(),"Oct".to_string(),"Nov".to_string(),"Dec".to_string()]
         }
     }
 }

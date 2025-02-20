@@ -74,10 +74,7 @@ pub fn select_plan_page(state: &State) -> Element<'static, MyAppMessage, Theme, 
             row![
                 Svg::from_path("assets/create-plan/colored-check.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                 column![
-                    text("Time-locked access").size(12).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }),
+                    text("Time-locked access").size(12),
                     text("Keeps your funds securely locked until a specific future date, so they can’t be accessed early")
                     .size(12)
                     .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
@@ -86,10 +83,7 @@ pub fn select_plan_page(state: &State) -> Element<'static, MyAppMessage, Theme, 
             row![
                 Svg::from_path("assets/create-plan/colored-check.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                 column![
-                    text("Unbreakable protection").size(12).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }),
+                    text("Unbreakable protection").size(12),
                     text("Ensures your funds are protected with advanced safeguards, so only the right person can claim them at the right time")
                     .size(12)
                     .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
@@ -98,10 +92,7 @@ pub fn select_plan_page(state: &State) -> Element<'static, MyAppMessage, Theme, 
             row![
                 Svg::from_path("assets/create-plan/colored-check.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                 column![
-                    text("Claimable funds after expiry").size(12).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }),
+                    text("Claimable funds after expiry").size(12),
                     text("Allows you to claim the funds after the lock period ends")
                     .size(12)
                     .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
@@ -161,10 +152,7 @@ pub fn select_plan_page(state: &State) -> Element<'static, MyAppMessage, Theme, 
             row![
                 Svg::from_path("assets/create-plan/colored-check.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                 column![
-                    text("Backup access plan").size(12).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }),
+                    text("Backup access plan").size(12),
                     text("Ensures your BTC can be recovered through predefined steps if you lose access to your private keys")
                     .size(12)
                     .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
@@ -173,10 +161,7 @@ pub fn select_plan_page(state: &State) -> Element<'static, MyAppMessage, Theme, 
             row![
                 Svg::from_path("assets/create-plan/colored-check.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                 column![
-                    text("Time-based status check-ins").size(12).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }),
+                    text("Time-based status check-ins").size(12),
                     text("Allows your beneficiary to recover BTC if you don’t confirm your status before the check-in period ends")
                     .size(12)
                     .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
@@ -185,10 +170,7 @@ pub fn select_plan_page(state: &State) -> Element<'static, MyAppMessage, Theme, 
             row![
                 Svg::from_path("assets/create-plan/colored-check.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                 column![
-                    text("Beneficiary designation").size(12).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }),
+                    text("Beneficiary designation").size(12),
                     text("Allows you to assign trusted beneficiaries to claim your BTC if you miss a status check-in")
                     .size(12)
                     .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
@@ -215,10 +197,6 @@ pub fn select_plan_page(state: &State) -> Element<'static, MyAppMessage, Theme, 
                     text("To use both protections, create a fail safe first, then a time safe. Fail safes guard against key loss; time safes protect against advanced\nthreats")
                         .size(12.5)
                         .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.))
-                        .font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                    })
                 ].spacing(4)              
             ].spacing(16).align_items(Alignment::Start),
             mouse_area(

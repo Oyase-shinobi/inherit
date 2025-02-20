@@ -145,18 +145,15 @@ pub fn generation() -> Element<'static, MyAppMessage, Theme, Renderer> {
                         text("Your time safe plan is being generated...").size(24).line_height(1.2).style(
                             Color::from_rgb(0., 0., 0.)
                         ).font(Font {
-                            weight: font::Weight::ExtraBold,
+                            weight: font::Weight::Bold,
                             ..Font::DEFAULT
                         }),
                         text("Please wait here while it is created").size(16).line_height(1.5).style(
                             Color::from_rgb(0., 0., 0.)
-                        ).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }),
+                        ),
                     ].spacing(8).align_items(Alignment::Center)
                 ].spacing(24).align_items(Alignment::Center)
-            ).padding([40., 203.5]).style(
+            ).padding([40., 190.5]).style(
                 Appearance {
                     text_color: None,
                     background: Some(Background::Color(Color::from_rgb(255./ 255., 255./ 255., 255.))),

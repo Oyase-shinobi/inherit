@@ -159,7 +159,7 @@ use iced::{
     widget::{container, image::Handle, Theme, column, Image, Svg, text, row, button},
     Border, Color, Element, Length, Rectangle, Sandbox, Settings, Shadow, Size, Alignment, Vector, Font, Background, theme, Point, Event,
     font::Weight, Gradient, gradient::{ Linear, ColorStop }, Radians, window, event,
-    alignment::{ Horizontal }
+    alignment::Horizontal
 };
 
 #[derive(Debug, Clone)]
@@ -224,7 +224,7 @@ impl Sandbox for MyApp {
                         .horizontal_alignment(Horizontal::Center),
                     container("").height(Length::Fixed(82.)),
                     text("Protect your legacy").font(Font {
-                        weight: Weight::Semibold,
+                        weight: Weight::Bold,
                         ..Font::DEFAULT
                     })
                         .size(32)

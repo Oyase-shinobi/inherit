@@ -149,16 +149,13 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                             text("0.235 BTC is now time-locked!").size(24).line_height(1.2).style(
                                 Color::from_rgb(0., 0., 0.)
                             ).font(Font {
-                                weight: font::Weight::ExtraBold,
+                                weight: font::Weight::Bold,
                                 ..Font::DEFAULT
                             }),
                             column![
                                 text("Protected against").size(14).line_height(1.5).style(
                                     Color::from_rgb(113. /255., 121. /255., 142. /255.)
-                                ).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }),
+                                ),
                                 row![
                                     container(row![
                                             Svg::from_path("assets/create-plan/checks.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
@@ -230,23 +227,17 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                                 text("What’s next?").size(20).line_height(1.2).style(
                                     Color::from_rgb(0., 0., 0.)
                                 ).font(Font {
-                                    weight: font::Weight::ExtraBold,
+                                    weight: font::Weight::Bold,
                                     ..Font::DEFAULT
                                 }),
                             ].spacing(8).align_items(Alignment::Center),
                             column![
                                 text("1. Wait for the time safe to expire, then claim your Bitcoin.").size(14).line_height(1.5).style(
                                     Color::from_rgb(9. /255., 8. /255., 20. /255.)
-                                ).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }),
+                                ),
                                 text("2. Add extra protection by setting up a fail safe to guard\n    against private key loss or unforeseen life events.").size(14).line_height(1.5).style(
                                     Color::from_rgb(9. /255., 8. /255., 20. /255.)
-                                ).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }),
+                                ),
                             ]
                         ].spacing(16).align_items(Alignment::Start).width(Length::Fill),
                         row![
@@ -271,36 +262,27 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                             container(text("Plan details").size(14).line_height(1.2).style(
                                 Color::from_rgb(158. /255., 168. /255., 190. /255.)
                             ).font(Font {
-                                weight: font::Weight::ExtraBold,
+                                weight: font::Weight::Bold,
                                 ..Font::DEFAULT
                             })).width(Length::Fill),
                             text("ID: 29382-3-423").size(14).line_height(1.5).style(
                                 Color::from_rgb(113. /255., 121. /255., 142. /255.)
-                            ).font(Font {
-                                weight: font::Weight::Medium,
-                                ..Font::DEFAULT
-                            }),
+                            ),
                         ].align_items(Alignment::Start).width(Length::Fill),
                         row![
                             container(
                                 column![
                                     text("Time Safe plan").size(12).line_height(1.4).style(
                                         Color::from_rgb(113. /255., 121. /255., 142. /255.)
-                                    ).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }),
+                                    ),
                                     text( state.plan_name.clone() + "'s plan").size(20).line_height(1.2).style(
                                         Color::from_rgb(8. /255., 15. /255., 33. /255.)
                                     ).font(Font {
-                                        weight: font::Weight::ExtraBold,
+                                        weight: font::Weight::Bold,
                                         ..Font::DEFAULT
                                     }),
                                     row![
-                                        text("Address: jbkdsvdg9...hfebrc49ejcin").size(12).line_height(1.4).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Address: jbkdsvdg9...hfebrc49ejcin").size(12).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                         Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                                     ].spacing(4).align_items(Alignment::Center).width(227),
                                 ].align_items(Alignment::Start).spacing(4)
@@ -308,10 +290,7 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                             column![
                                 text("Time-locked").size(12).line_height(1.4).style(
                                     Color::from_rgb(113. /255., 121. /255., 142. /255.)
-                                ).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }),
+                                ),
                                 container(row![
                                     Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                                     text("0.234 BTC").size(16).line_height(1.5)
@@ -358,14 +337,11 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                                 column![
                                     text("Unlock date").size(16).line_height(1.5).style(
                                         Color::from_rgb(20. /255., 23. /255., 23. /255.)
-                                    ).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }),
+                                    ),
                                     text( "Securely record the unlock date in a way that\nensures easy reference for you and your\nbeneficiaries when needed").size(12).line_height(1.4).style(
                                         Color::from_rgb(113. /255., 121. /255., 142. /255.)
                                     ).font(Font {
-                                        weight: font::Weight::ExtraBold,
+                                        weight: font::Weight::Bold,
                                         ..Font::DEFAULT
                                     }),
 
@@ -373,18 +349,12 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                             ).width(Length::Fill),
                             column![
                                 row![
-                                    text("Jan 3, 2026, 12:00 AM").size(16).line_height(1.5).style(
+                                    text(format!("{} {}, {}",  state.month_names[state.month.clone() as usize - 1] , state.day.clone(), state.year.clone())).size(16).line_height(1.5).style(
                                         Color::from_rgb(8. /255., 15. /255., 33. /255.)
-                                    ).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }),
+                                    ),
                                     text("UTC").size(16).line_height(1.5).style(
                                         Color::from_rgb(113. /255., 121. /255., 142. /255.)
-                                    ).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }),
+                                    ),
                                 ].align_items(Alignment::End).spacing(4),
                                 
                                 container(row![
@@ -433,19 +403,13 @@ pub fn fs_plan_created_page(state: &State) -> Element<'static, MyAppMessage, The
                             row![
                                 text("Bitcoin transaction link").size(14).line_height(1.5).style(
                                     Color::from_rgb(20. /255., 23. /255., 23. /255.)
-                                ).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }),
+                                ),
                                 Svg::from_path("assets/create-plan/info_tooltip.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                             ].align_items(Alignment::Center).spacing(4),
                             container(row![
                                 container(text("https://www.blockchain.com/explorer/transactions/btc/f4a8f0379...").size(14).line_height(1.5).style(
                                     Color::from_rgb(42. /255., 47. /255., 53. /255.)
-                                ).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                })).width(Length::Fill),
+                                )).width(Length::Fill),
                                 Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                             ].spacing(8).align_items(Alignment::Center).width(Length::Fill)).style(
                                 Appearance {

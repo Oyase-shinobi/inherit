@@ -133,7 +133,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                         container(text("Your dashboard").size(24).line_height(1.2).style(
                             Color::from_rgb(9. /255., 8. /255., 20. /255.)
                         ).font(Font {
-                            weight: font::Weight::ExtraBold,
+                            weight: font::Weight::Bold,
                             ..Font::DEFAULT
                         })).width(Length::Fill),
                         button("+ Create new plan").style(
@@ -152,15 +152,12 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                             text("Your inherit plans").size(24).line_height(1.2).style(
                                 Color::from_rgb(9. /255., 8. /255., 20. /255.)
                                 ).font(Font {
-                                    weight: font::Weight::ExtraBold,
+                                    weight: font::Weight::Bold,
                                     ..Font::DEFAULT
                                 }),
                             text("Manage your inherit plans and perform status check-ins").size(16).line_height(1.5).style(
                                 Color::from_rgb(9. /255., 8. /255., 20. /255.)
-                                ).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }),
+                                ),
                         ].spacing(8.).align_items(Alignment::Start).width(Length::Shrink)).width(Length::Fill),
                         filter_btn_group.view()
                     ].width(Length::Fill).align_items(Alignment::End),
@@ -177,12 +174,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 ].width(Length::Fill),
                                 container(column![
                                     column![
-                                        text("Time safe").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                         text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                     ].align_items(Alignment::Start).width(Length::Fill),
@@ -240,12 +234,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 ].width(Length::Fill),
                                 container(column![
                                     column![
-                                        text("Time safe").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                         text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                     ].align_items(Alignment::Start).width(Length::Fill),
@@ -306,12 +297,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 ].width(Length::Fill),
                                 container(column![
                                     column![
-                                        text("Time safe").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                         text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                     ].align_items(Alignment::Start).width(Length::Fill),
@@ -337,10 +325,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                     ),
                                 ].spacing(12).align_items(Alignment::Start)).height(Length::Fill),
                                 container(
-                                    text("Assets claimed. We will inform you \nwhen transaction is confirmed").size(14).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).line_height(1.5).style(Color::from_rgb(42. /255., 47. /255., 53. /255.))
+                                    text("Assets claimed. We will inform you \nwhen transaction is confirmed").size(14).line_height(1.5).style(Color::from_rgb(42. /255., 47. /255., 53. /255.))
                                 ).padding(8).style(
                                     Appearance {
                                         text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
@@ -390,12 +375,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 ].width(Length::Fill),
                                 container(column![
                                     column![
-                                        text("Time safe").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                         text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                     ].align_items(Alignment::Start).width(Length::Fill),
@@ -421,7 +403,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                     ),
                                 ].spacing(12).align_items(Alignment::Start)).height(Length::Fill),
                                 text("Time Safe expired on Jan 2, 2025").size(12).font(Font {
-                                    weight: font::Weight::Medium,
+                                    weight: font::Weight::Normal,
                                     ..Font::DEFAULT
                                 }).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                             ]
@@ -458,12 +440,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 ].width(Length::Fill),
                                 container(column![
                                     column![
-                                        text("Fail Safe Recovery").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                         text("Tom’s active bitcoin plan").size(16).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                     ].align_items(Alignment::Start).width(Length::Fill),
@@ -521,12 +500,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                         ].width(Length::Fill),
                                         container(column![
                                             column![
-                                                text("Fail Safe Recovery").size(14).font(Font {
-                                                    weight: font::Weight::Medium,
-                                                    ..Font::DEFAULT
-                                                }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                                 text("Tom’s active bitcoin plan").size(16).font(Font {
-                                                    weight: font::Weight::ExtraBold,
+                                                    weight: font::Weight::Bold,
                                                     ..Font::DEFAULT
                                                 }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                             ].align_items(Alignment::Start).width(Length::Fill),
@@ -584,12 +560,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                                 ].width(Length::Fill),
                                                 container(column![
                                                     column![
-                                                        text("Fail Safe Recovery").size(14).font(Font {
-                                                            weight: font::Weight::Medium,
-                                                            ..Font::DEFAULT
-                                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                        text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                                         text("Tom’s active bitcoin plan").size(16).font(Font {
-                                                            weight: font::Weight::ExtraBold,
+                                                            weight: font::Weight::Bold,
                                                             ..Font::DEFAULT
                                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                                     ].align_items(Alignment::Start).width(Length::Fill),
@@ -614,10 +587,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                                         }
                                                     ),
                                                 ].spacing(12).align_items(Alignment::Start)).height(Length::Fill),
-                                                text("Fail Safe Recovery expired on Jan 2, 2025").size(12).font(Font {
-                                                    weight: font::Weight::Medium,
-                                                    ..Font::DEFAULT
-                                                }).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                text("Fail Safe Recovery expired on Jan 2, 2025").size(12).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                             ]
                                         .spacing(26).align_items(Alignment::Start)
                                         )
@@ -649,16 +619,13 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 ].width(Length::Fill),
                                 container(column![
                                     column![
-                                        column![text("Receive assets").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        column![text("Receive assets").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                         text("Tom’s active bitcoin plan").size(16).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.))],
                                         text("The time-lock on an inheritance plan \nhas expired, and assets have been \ntransferred to your wallet as a \nbeneficiary. ").size(14).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.5).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                     ].align_items(Alignment::Start).width(Length::Fill).spacing(12),
@@ -699,12 +666,9 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                         ].width(Length::Fill),
                                         container(column![
                                             column![
-                                                text("Time safe").size(14).font(Font {
-                                                    weight: font::Weight::Medium,
-                                                    ..Font::DEFAULT
-                                                }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                text("Time safe").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                                 text("Tom’s active bitcoin plan for our happy future").size(16).font(Font {
-                                                    weight: font::Weight::ExtraBold,
+                                                    weight: font::Weight::Bold,
                                                     ..Font::DEFAULT
                                                 }).line_height(1.2).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                             ].align_items(Alignment::Start).width(Length::Fill),
@@ -761,14 +725,8 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                 ].width(Length::Fill),
                                 container(column![
                                     column![
-                                        text("Receive assets").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                        text("The time-lock on an inheritance plan \nhas expired, and assets have been \ntransferred to your wallet as a \nbeneficiary. ").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
+                                        text("Receive assets").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("The time-lock on an inheritance plan \nhas expired, and assets have been \ntransferred to your wallet as a \nbeneficiary. ").size(14).line_height(1.5).style(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
                                     ].align_items(Alignment::Start).width(Length::Fill).spacing(12),
                                 ].spacing(12).align_items(Alignment::Start)).height(Length::Fill),
                                 button("Claim BTC").style(
@@ -807,10 +765,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                         ].width(Length::Fill),
                                         container(column![
                                             column![
-                                                text("Fail Safe Recovery").size(14).font(Font {
-                                                    weight: font::Weight::Medium,
-                                                    ..Font::DEFAULT
-                                                }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                             ].align_items(Alignment::Start).width(Length::Fill),
                                             container(row![
                                                 Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
@@ -833,10 +788,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                                 }
                                             ),
                                         ].spacing(12).align_items(Alignment::Start)).height(Length::Fill),
-                                        text("Assets claimed on Jan 2, 2025").size(12).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Assets claimed on Jan 2, 2025").size(12).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                     ]
                                 .spacing(26).align_items(Alignment::Start)
                                 )
@@ -869,10 +821,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                                 ].width(Length::Fill),
                                                 container(column![
                                                     column![
-                                                        text("Fail Safe Recovery").size(14).font(Font {
-                                                            weight: font::Weight::Medium,
-                                                            ..Font::DEFAULT
-                                                        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                        text("Fail Safe Recovery").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                                     ].align_items(Alignment::Start).width(Length::Fill),
                                                     container(row![
                                                         Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
@@ -895,10 +844,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                                         }
                                                     ),
                                                 ].spacing(12).align_items(Alignment::Start)).height(Length::Fill),
-                                                text("Assets claimed on Jan 3, 2025").size(12).font(Font {
-                                                    weight: font::Weight::Medium,
-                                                    ..Font::DEFAULT
-                                                }).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                text("Assets claimed on Jan 3, 2025").size(12).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                             ]
                                         .spacing(26).align_items(Alignment::Center)
                                         )

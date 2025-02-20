@@ -22,14 +22,11 @@ impl BalanceCard {
             .width(Length::Fixed(40.))
             .height(Length::Fixed(40.));
 
-        let title =  text(self.title).size(16).font(Font {
-            weight: font::Weight::Medium,
-            ..Font::DEFAULT
-        }).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(Length::Fill);
+        let title =  text(self.title).size(16).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(Length::Fill);
 
         let balance = text(format!("{:.2} BTC", self.balance))
             .size(20).font(Font {
-            weight: font::Weight::ExtraBold,
+            weight: font::Weight::Bold,
             ..Font::DEFAULT
         }).line_height(1.2).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(Length::Fill);
 

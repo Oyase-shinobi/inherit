@@ -25,53 +25,32 @@ impl CountdownTimer {
 
         let time_display = row![
             column![text(format!("{:03}", days)).size(16).font(Font {
-                weight: font::Weight::ExtraBold,
+                weight: font::Weight::Bold,
                 ..Font::DEFAULT
-            }).line_height(1.2), text("days").size(12).font(Font {
-                weight: font::Weight::Medium,
-                ..Font::DEFAULT
-            }).line_height(1.4)]
+            }).line_height(1.2), text("days").size(12).line_height(1.4)]
                 .align_items(Alignment::Center),
             text(":").size(16),
             column![text(format!("{:02}", hours)).size(16).font(Font {
-                weight: font::Weight::ExtraBold,
+                weight: font::Weight::Bold,
                 ..Font::DEFAULT
-            }).line_height(1.2), text("hours").size(12).font(Font {
-                weight: font::Weight::Medium,
-                ..Font::DEFAULT
-            }).line_height(1.4)]
+            }).line_height(1.2), text("hours").size(12).line_height(1.4)]
                 .align_items(Alignment::Center),
-            text(":").size(16).font(Font {
-                weight: font::Weight::Medium,
-                ..Font::DEFAULT
-            }).line_height(1.4),
+            text(":").size(16).line_height(1.4),
             column![text(format!("{:02}", minutes)).size(16).font(Font {
-                weight: font::Weight::ExtraBold,
+                weight: font::Weight::Bold,
                 ..Font::DEFAULT
-            }).line_height(1.2), text("mins").size(12).font(Font {
-                weight: font::Weight::Medium,
-                ..Font::DEFAULT
-            }).line_height(1.4)]
+            }).line_height(1.2), text("mins").size(12).line_height(1.4)]
                 .align_items(Alignment::Center),
-            text(":").size(16).font(Font {
-                weight: font::Weight::Medium,
-                ..Font::DEFAULT
-            }).line_height(1.4),
+            text(":").size(16).line_height(1.4),
             column![text(format!("{:02}", seconds)).size(16).font(Font {
-                weight: font::Weight::ExtraBold,
+                weight: font::Weight::Bold,
                 ..Font::DEFAULT
-            }).line_height(1.2), text("secs").size(12).font(Font {
-                weight: font::Weight::Medium,
-                ..Font::DEFAULT
-            }).line_height(1.4)]
+            }).line_height(1.2), text("secs").size(12).line_height(1.4)]
                 .align_items(Alignment::Center),
         ]
         .align_items(Alignment::Center).spacing(5);
 
-        container(column![text(self.title).size(12).font(Font {
-                weight: font::Weight::Medium,
-                ..Font::DEFAULT
-            }).line_height(1.4), time_display]
+        container(column![text(self.title).size(12).line_height(1.4), time_display]
             .spacing(10).align_items(Alignment::Center)
             )
             .padding([10., 38.])

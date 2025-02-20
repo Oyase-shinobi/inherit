@@ -79,7 +79,6 @@ impl Application for MyApp {
             }
         }
     }
-    
 }
 
 struct BackButtonColor {}

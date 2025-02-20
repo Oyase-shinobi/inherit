@@ -160,21 +160,21 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                     container(
                         column![
                             text("INHERIT PLAN SUMMARY").size(14).font(Font {
-                                weight: font::Weight::Semibold,
+                                weight: font::Weight::Bold,
                                 ..Font::DEFAULT
                             }),
                             column![
                                 text("Time Safe plan").size(14).font(Font {
-                                    weight: font::Weight::Semibold,
+                                    weight: font::Weight::Bold,
                                     ..Font::DEFAULT
                                 }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).line_height(1.5),
                                 text(state.plan_name.clone() + "'s plan").size(24).font(Font {
-                                    weight: font::Weight::ExtraBold,
+                                    weight: font::Weight::Bold,
                                     ..Font::DEFAULT
                                 }).style(Color::from_rgb(8. /255., 15. /255., 33. /255.)).line_height(1.2),
                                 row![
                                     text("Address: jbkdsvdg9...hfebrc49ejcin").size(14).font(Font {
-                                        weight: font::Weight::Semibold,
+                                        weight: font::Weight::Bold,
                                         ..Font::DEFAULT
                                     }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).line_height(1.5),
                                     Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
@@ -185,12 +185,12 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     row![
                                     column![
                                         text("Beneficiary wallet").size(16).font(Font {
-                                            weight: font::Weight::ExtraBold,
+                                            weight: font::Weight::Bold,
                                             ..Font::DEFAULT
                                         }).line_height(1.2),
                                         row![
                                             text("Address: jbkdsvdg9...hfebrc49ejcin").size(14).font(Font {
-                                                weight: font::Weight::Semibold,
+                                                weight: font::Weight::Bold,
                                                 ..Font::DEFAULT
                                             }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).line_height(1.5),
                                             Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
@@ -240,51 +240,30 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                                     }
                                                 ).width(Length::Fill).height(1),
                                                 text("Locked UTXOs").size(14).font(Font {
-                                                    weight: font::Weight::Semibold,
+                                                    weight: font::Weight::Bold,
                                                     ..Font::DEFAULT
                                                 }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)).line_height(1.5),
                                                 container(column![
                                                     row![
-                                                        container(text("Amount BTC").size(14).font(Font {
-                                                            weight: font::Weight::Medium,
-                                                            ..Font::DEFAULT
-                                                        }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(178)).padding([0, 0, 0, 16]),
-                                                        text("Address").size(14).font(Font {
-                                                            weight: font::Weight::Medium,
-                                                            ..Font::DEFAULT
-                                                        }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(178),
+                                                        container(text("Amount BTC").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(178)).padding([0, 0, 0, 16]),
+                                                        text("Address").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(178),
                                                         row![
-                                                            text("Confirmations").size(14).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                                            text("Confirmations").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                                             Svg::from_path("assets/create-plan/info_tooltip.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                                                         ].spacing(4).align_items(Alignment::Center).width(178),
-                                                        text("Status").size(14).font(Font {
-                                                            weight: font::Weight::Medium,
-                                                            ..Font::DEFAULT
-                                                        }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(178),
+                                                        text("Status").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(178),
                                                         
                                                     ].align_items(Alignment::Center).height(44),
                                                     Scrollable::new(column![
                                                         container(row![
 
-                                                            container(text("0.015").size(14).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
+                                                            container(text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
                                                         row![
-                                                            text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                                                            weight: font::Weight::Medium,
-                                                            ..Font::DEFAULT
-                                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                                            text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                                         Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                                                         ].spacing(8).align_items(Alignment::Center).width(178),
                                 
-                                                        text("15").size(14).line_height(1.5).font(Font {
-                                                            weight: font::Weight::Medium,
-                                                            ..Font::DEFAULT
-                                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
+                                                        text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
                                                         container(Svg::from_path("assets/create-plan/spendable_status.svg").width(Length::Fixed(84.)).height(Length::Fixed(25.))).width(178),
                                 
                                                         ].align_items(Alignment::Center).height(44)).style(
@@ -297,22 +276,13 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                                         ),
                                                         container(row![
 
-                                                            container(text("0.015").size(14).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
+                                                            container(text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
                                                             row![
-                                                                text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                                                text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                                             Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                                                             ].spacing(8).align_items(Alignment::Center).width(178),
                                 
-                                                            text("15").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
+                                                            text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
                                                             container(Svg::from_path("assets/create-plan/spendable_status.svg").width(Length::Fixed(84.)).height(Length::Fixed(25.))).width(178),
                                 
                                                         ].align_items(Alignment::Center).height(44)).style(
@@ -325,22 +295,13 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                                         ),
                                                         container(row![
 
-                                                            container(text("0.015").size(14).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
+                                                            container(text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
                                                             row![
-                                                                text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                                                text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                                             Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                                                             ].spacing(8).align_items(Alignment::Center).width(178),
                                 
-                                                            text("15").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
+                                                            text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
                                                             container(Svg::from_path("assets/create-plan/pending_status.svg").width(Length::Fixed(68.)).height(Length::Fixed(25.))).width(178),
                                 
                                                         ].align_items(Alignment::Center).height(44)).style(
@@ -353,22 +314,13 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                                         ),
                                                         container(row![
 
-                                                            container(text("0.015").size(14).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
+                                                            container(text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
                                                             row![
-                                                                text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                                                text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                                             Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                                                             ].spacing(8).align_items(Alignment::Center).width(178),
                                 
-                                                            text("15").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
+                                                            text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
                                                             container(Svg::from_path("assets/create-plan/pending_status.svg").width(Length::Fixed(68.)).height(Length::Fixed(25.))).width(178),
                                                         ].align_items(Alignment::Center).height(44)).style(
                                                             Appearance {
@@ -380,22 +332,13 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                                         ),
                                                         row![
 
-                                                            container(text("0.015").size(14).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
+                                                            container(text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178)).padding([0, 0, 0, 16]),
                                                             row![
-                                                                text("as9sk0...wi9dso").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                                                text("as9sk0...wi9dso").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                                             Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                                                             ].spacing(8).align_items(Alignment::Center).width(178),
                                 
-                                                            text("15").size(14).line_height(1.5).font(Font {
-                                                                weight: font::Weight::Medium,
-                                                                ..Font::DEFAULT
-                                                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
+                                                            text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(178),
                                                             container(Svg::from_path("assets/create-plan/locked_status.svg").width(Length::Fixed(61.)).height(Length::Fixed(25.))).width(178),
                                                         ].align_items(Alignment::Center).height(44)
                                                     ].align_items(Alignment::Center)).height(176).direction(Direction::Vertical(Properties::new().scroller_width(4).width(0)))
@@ -410,31 +353,28 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                                 row![
                                                     row![
                                                         text("1 UTXO").size(16).font(Font {
-                                                            weight: font::Weight::Semibold,
+                                                            weight: font::Weight::Bold,
                                                             ..Font::DEFAULT
                                                         }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                                                         text("selected").size(16).font(Font {
-                                                            weight: font::Weight::Semibold,
+                                                            weight: font::Weight::Bold,
                                                             ..Font::DEFAULT
                                                         }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.))
                                                     ].spacing(4).align_items(Alignment::Center),
                                                     row![
                                                         text("Total BTC to lock").size(16).font(Font {
-                                                            weight: font::Weight::Semibold,
+                                                            weight: font::Weight::Bold,
                                                             ..Font::DEFAULT
                                                         }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
-                                                        text("0.015 BTC").size(16).font(Font {
-                                                            weight: font::Weight::Semibold,
-                                                            ..Font::DEFAULT
-                                                        }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
+                                                        text("0.015 BTC").size(16).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                                                     ].spacing(4).align_items(Alignment::Center),
                                                     row![
                                                         text("Time lock duration:").size(16).font(Font {
-                                                            weight: font::Weight::Semibold,
+                                                            weight: font::Weight::Bold,
                                                             ..Font::DEFAULT
                                                         }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                                         text("6 months").size(16).font(Font {
-                                                            weight: font::Weight::Semibold,
+                                                            weight: font::Weight::Bold,
                                                             ..Font::DEFAULT
                                                         }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                                                     ].spacing(4).align_items(Alignment::Center),
@@ -465,16 +405,16 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     true => {
                                         column![
                                             text("Unlock date").size(16).font(Font {
-                                                weight: font::Weight::Semibold,
+                                                weight: font::Weight::Bold,
                                                 ..Font::DEFAULT
                                             }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).line_height(1.5),
                                             row![
                                                 text("Jan 3, 2026, 12:00 AM").size(16).font(Font {
-                                                    weight: font::Weight::Semibold,
+                                                    weight: font::Weight::Bold,
                                                     ..Font::DEFAULT
                                                 }).style(Color::from_rgb(8. /255., 15. /255., 33. /255.)).line_height(1.5),
                                                 text("UTC").size(16).font(Font {
-                                                    weight: font::Weight::Semibold,
+                                                    weight: font::Weight::Bold,
                                                     ..Font::DEFAULT
                                                 }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).line_height(1.5),
                                             ].spacing(4).align_items(Alignment::Center)
@@ -514,21 +454,15 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                     container(
                         column![
                             text("COST & TRANSACTION DETAILS").size(14).font(Font {
-                                weight: font::Weight::Semibold,
+                                weight: font::Weight::Bold,
                                 ..Font::DEFAULT
                             }),
                             column![
                                 row![
-                                    text("Bitcoin provided").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).line_height(1.5).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)).width(Length::Fill),
+                                    text("Bitcoin provided").size(16).line_height(1.5).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)).width(Length::Fill),
                                     container(row![
                                         Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                        text("3 BTC").size(16).font(Font {
-                                            weight: font::Weight::Semibold,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5)
+                                        text("3 BTC").size(16).line_height(1.5)
                                     ].spacing(2.5).padding([4., 6., 4., 4.0]).align_items(Alignment::Center)).style(
                                         Appearance {
                                             text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
@@ -568,18 +502,12 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                 ).width(Length::Fill).height(1),
                                 row![
                                     row![
-                                        text("Service fee").size(16).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
+                                        text("Service fee").size(16).line_height(1.5).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                                         Svg::from_path("assets/create-plan/info_tooltip.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                                     ].spacing(4).align_items(Alignment::Center).width(Length::Fill),
                                     container(row![
                                         Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                        text("0.0013 BTC").size(16).font(Font {
-                                            weight: font::Weight::Semibold,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5)
+                                        text("0.0013 BTC").size(16).line_height(1.5)
                                     ].spacing(2.5).padding([4., 6., 4., 4.0]).align_items(Alignment::Center)).style(
                                         Appearance {
                                             text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
@@ -620,18 +548,12 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                 row![
                                     column![
                                         row![
-                                        text("Total Bitcoin time-locked after service fee").size(16).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
+                                        text("Total Bitcoin time-locked after service fee").size(16).line_height(1.5).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                                         tooltip(
                                             Svg::from_path("assets/create-plan/info_tooltip.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                                             row![
                                                 Svg::from_path("assets/create-plan/tooltip_polygon.svg").width(Length::Fixed(9.)).height(Length::Fixed(21.)),
-                                                container(text("The fee is deducted from any assets in the user’s wallet that are outside of the Inherit plan. If no funds exist outside the Inherit plan, the fee will be deducted from the BTC balance before it is time-locked.").line_height(1.5).size(14).font(Font {
-                                                weight: font::Weight::Medium,
-                                                ..Font::DEFAULT
-                                            }).width(361).height(100)).padding([12.0, 16.0]).style(
+                                                container(text("The fee is deducted from any assets in the user’s wallet that are outside of the Inherit plan. If no funds exist outside the Inherit plan, the fee will be deducted from the BTC balance before it is time-locked.").line_height(1.5).size(14).width(361).height(100)).padding([12.0, 16.0]).style(
                                                 Appearance {
                                                     text_color: Some(Color::from_rgb(1., 1., 1.)),
                                                     background: Some(Background::Color(Color::from_rgb(0., 62. /255., 144. /255.))),
@@ -643,17 +565,11 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                             tooltip::Position::Right,
                                         )
                                         ].spacing(4).align_items(Alignment::Center),
-                                        text("Total amount of BTC locked reduced by fee").size(12).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                                        text("Total amount of BTC locked reduced by fee").size(12).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                                     ].width(Length::Fill).spacing(4).align_items(Alignment::Start),
                                     container(row![
                                         Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                        text("2.9987 BTC").size(16).font(Font {
-                                            weight: font::Weight::Semibold,
-                                            ..Font::DEFAULT
-                                        }).line_height(1.5)
+                                        text("2.9987 BTC").size(16).line_height(1.5)
                                     ].spacing(2.5).padding([4., 6., 4., 4.0]).align_items(Alignment::Center)).style(
                                         Appearance {
                                             text_color: Some(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.)),
@@ -674,27 +590,15 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                 ].width(Length::Fill).height(Length::Shrink).align_items(Alignment::Center),
                             ].spacing(12).width(Length::Fill).height(Length::Shrink).align_items(Alignment::Start),
                             row![
-                                text("Hide breakdown").size(14).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }).style(Color::from_rgb(2. / 255., 84. / 255., 191. / 255.)).line_height(1.5),
+                                text("Hide breakdown").size(14).style(Color::from_rgb(2. / 255., 84. / 255., 191. / 255.)).line_height(1.5),
                                 Svg::from_path("assets/create-plan/check_down.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                             ].spacing(8).align_items(Alignment::Center),
                             column![
-                                text("Fee breakdown").size(14).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5),
+                                text("Fee breakdown").size(14).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5),
                                 column![
                                     row![
-                                        text("Total fee").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
-                                        text("0.0013 BTC").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
+                                        text("Total fee").size(14).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
+                                        text("0.0013 BTC").size(14).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
                                     ].align_items(Alignment::Center).width(Length::Fill),
                                     container(
                                         row![""]
@@ -716,14 +620,8 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                         }
                                     ).width(Length::Fill).height(1),
                                     row![
-                                        text("Service fee").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
-                                        text("0.001 BTC").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
+                                        text("Service fee").size(14).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
+                                        text("0.001 BTC").size(14).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
                                     ].align_items(Alignment::Center).width(Length::Fill),
                                     container(
                                         row![""]
@@ -745,32 +643,17 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                         }
                                     ).width(Length::Fill).height(1),
                                     row![
-                                        text("Network fee").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
-                                        text("0.003 BTC").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
+                                        text("Network fee").size(14).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
+                                        text("0.003 BTC").size(14).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
                                     ].align_items(Alignment::Center).width(Length::Fill),
                                 ].spacing(6).align_items(Alignment::Start).width(Length::Fill)
                             ].spacing(8).align_items(Alignment::Start).width(Length::Fill),
                             column![
-                                text("Transaction details").size(14).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5),
+                                text("Transaction details").size(14).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5),
                                 column![
                                     row![
-                                        text("Fee rate").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
-                                        text("100 sat/vByte").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
+                                        text("Fee rate").size(14).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
+                                        text("100 sat/vByte").size(14).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
                                     ].align_items(Alignment::Center).width(Length::Fill),
                                     container(
                                         row![""]
@@ -792,14 +675,8 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                         }
                                     ).width(Length::Fill).height(1),
                                     row![
-                                        text("Estimated confirmation time").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
-                                        text("1-2 mins").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
+                                        text("Estimated confirmation time").size(14).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
+                                        text("1-2 mins").size(14).style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)).line_height(1.5)
                                     ].align_items(Alignment::Center).width(Length::Fill),
                                     container(
                                         row![""]
@@ -821,10 +698,7 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                                         }
                                     ).width(Length::Fill).height(1),
                                     row![
-                                        text("Replace-by-fee").size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
+                                        text("Replace-by-fee").size(14).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)).line_height(1.5).width(Length::Fill),
                                         Svg::from_path("assets/create-plan/enabled_badge.svg").width(Length::Fixed(68.)).height(Length::Fixed(25.)),
                                     ].align_items(Alignment::Center).width(Length::Fill),
                                 ].spacing(6).align_items(Alignment::Start).width(Length::Fill)
@@ -841,43 +715,25 @@ pub fn review_confirm_page(state: &State) -> Element<'static, MyAppMessage, Them
                     container(
                         column![
                             text("TERMS & IMPORTANT INFORMATION").size(14).font(Font {
-                                weight: font::Weight::Semibold,
+                                weight: font::Weight::Bold,
                                 ..Font::DEFAULT
                             }),
 
                             row![
                                 checkbox("", state.privacy_is_checked).size(16.).spacing(0.).on_toggle(MyAppMessage::TogglePrivacyCheckbox),
                                 row![
-                                    text("I agree to Inherit’s").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
-                                    text("Terms of Service").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(2. /255., 84. /255., 191. /255.)).line_height(1.5),
-                                    text("and").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
-                                    text("Privacy Policy").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(2. /255., 84. /255., 191. /255.)).line_height(1.5),
+                                    text("I agree to Inherit’s").size(16).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
+                                    text("Terms of Service").size(16).style(Color::from_rgb(2. /255., 84. /255., 191. /255.)).line_height(1.5),
+                                    text("and").size(16).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
+                                    text("Privacy Policy").size(16).style(Color::from_rgb(2. /255., 84. /255., 191. /255.)).line_height(1.5),
                                 ].spacing(6).align_items(Alignment::Center)
                             ].spacing(16).align_items(Alignment::Center),
                             column![
-                                text("Pay attention to important aspects:").size(16).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
+                                text("Pay attention to important aspects:").size(16).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
                                 container(
                                 row![
                                     checkbox("", state.understand_is_checked).size(16.).spacing(0.).on_toggle(MyAppMessage::ToggleUnderstandCheckbox),
-                                    text("I understand my BTC will be locked and inaccessible until the set time expires.").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
+                                    text("I understand my BTC will be locked and inaccessible until the set time expires.").size(16).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).line_height(1.5),
                                 ].spacing(8).align_items(Alignment::Center),
                             ).style(
                                 Appearance {

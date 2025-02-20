@@ -9,11 +9,10 @@ use iced::{
     self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient, theme,
     widget::{container, container::Appearance, Svg, column, Column, row, text, button, Theme, mouse_area, text_input, tooltip, checkbox, scrollable::{Direction, Properties}, Scrollable, toggler},
     font,
-    gradient::{Linear, ColorStop},
+    gradient::{Linear, ColorStop}
 };
 
 pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Theme, Renderer> {
-    let month_names = vec!["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     let recommend_alert = match state.recommend_alert_visible {
         true => row![
             row![
@@ -22,10 +21,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                     .size(14)
                     .width(500)
                     .style(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.))
-                    .font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                })        
+                            
             ].spacing(16).align_items(Alignment::Start),
             mouse_area(
                 Svg::from_path("assets/create-plan/cross_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
@@ -36,14 +32,8 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
     let select_uxtos_component = match state.is_selected_uxtos {
         false => column![
             column![
-                text("Address").size(14).font(Font {
-                    weight: font::Weight::Medium,
-                    ..Font::DEFAULT
-                }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
-                container(text("default.connected@address.com").size(14).font(Font {
-                    weight: font::Weight::Medium,
-                    ..Font::DEFAULT
-                }).width(469)).padding([10.0, 12.0]).style(
+                text("Address").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                container(text("default.connected@address.com").size(14).width(469)).padding([10.0, 12.0]).style(
                     Appearance {
                         text_color: Some(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                         background: Some(Background::Color(Color::from_rgb(236./ 255., 238./ 255., 242. /255.))),
@@ -55,18 +45,12 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
             column![
                 row![
                     Svg::from_path("assets/create-plan/btc_image.svg").width(Length::Fixed(18.)).height(Length::Fixed(18.)),
-                    text("Amount of BTC").size(14).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                    text("Amount of BTC").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                     tooltip(
                         Svg::from_path("assets/create-plan/info_tooltip.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                         row![
                             Svg::from_path("assets/create-plan/tooltip_polygon.svg").width(Length::Fixed(9.)).height(Length::Fixed(21.)),
-                            container(text("Inherit will automatically use the oldest UTXOs first when a fixed amount is entered. To customize UTXOs, you can enable the toggle.").line_height(1.5).size(14).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).width(400).height(63)).padding([12.0, 16.0]).style(
+                            container(text("Inherit will automatically use the oldest UTXOs first when a fixed amount is entered. To customize UTXOs, you can enable the toggle.").line_height(1.5).size(14).width(400).height(63)).padding([12.0, 16.0]).style(
                             Appearance {
                                 text_color: Some(Color::from_rgb(1., 1., 1.)),
                                 background: Some(Background::Color(Color::from_rgb(0., 62. /255., 144. /255.))),
@@ -80,7 +64,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                 ].spacing(4).align_items(Alignment::Center),
                 row![
                     container(text("3.926").size(32).font(Font {
-                        weight: font::Weight::ExtraBold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).width(227).vertical_alignment(Vertical::Center).horizontal_alignment(iced::alignment::Horizontal::Center)).padding([18.0, 8.0]).style(
                         Appearance {
@@ -90,18 +74,12 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                             shadow: Shadow::default(),
                         }
                     ),
-                    text("= $280,888.80").size(14).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(138. /255., 146. /255., 165. /255.))
+                    text("= $280,888.80").size(14).style(Color::from_rgb(138. /255., 146. /255., 165. /255.))
                 ].align_items(Alignment::Center).spacing(8),
                 row![
-                    text("Available: 4.21 BTC").size(14).font(Font {
-                        weight: font::Weight::Semibold,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(138. /255., 146. /255., 165. /255.)),
+                    text("Available: 4.21 BTC").size(14).style(Color::from_rgb(138. /255., 146. /255., 165. /255.)),
                     text("Add max").size(14).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(2. /255., 84. /255., 191. /255.))
                 ].align_items(Alignment::Center).spacing(8)
@@ -111,7 +89,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
             column![
                 column![
                     text("Name (optional)").size(14).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                     text_input("Enter beneficiary", &state.plan_name).style(
@@ -124,25 +102,13 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                     container(
                         Svg::from_path("assets/create-plan/check-box.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                     ).padding([14., 16.]),
-                    text("Amount BTC").size(14).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(166),
-                    text("Address").size(14).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(166),
+                    text("Amount BTC").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(166),
+                    text("Address").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(166),
                     row![
-                        text("Confirmations").size(14).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
+                        text("Confirmations").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                         Svg::from_path("assets/create-plan/info_tooltip.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                     ].spacing(4).align_items(Alignment::Center).width(166),
-                    text("Status").size(14).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(166),
+                    text("Status").size(14).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)).width(166),
                     
                 ].align_items(Alignment::Center),
                 Scrollable::new(column![
@@ -150,22 +116,13 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                     container(
                         checkbox("", state.first_is_checked).size(16.).spacing(0.).on_toggle(MyAppMessage::ToggleCheckbox1),
                     ).padding([14., 16.]),
-                    text("0.015").size(14).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                    text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                     row![
-                        text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                        text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                         Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                     ].spacing(8).align_items(Alignment::Center).width(166),
 
-                    text("15").size(14).line_height(1.5).font(Font {
-                        weight: font::Weight::Medium,
-                        ..Font::DEFAULT
-                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                    text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                     container(Svg::from_path("assets/create-plan/spendable_status.svg").width(Length::Fixed(84.)).height(Length::Fixed(25.))).width(166),
 
                     ].align_items(Alignment::Center)).style(
@@ -180,22 +137,13 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                         container(
                             checkbox("", state.second_is_checked).size(16.).spacing(0.).on_toggle(MyAppMessage::ToggleCheckbox2),
                         ).padding([14., 16.]),
-                        text("0.015").size(14).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         row![
-                            text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                            text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                         Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                         ].spacing(8).align_items(Alignment::Center).width(166),
 
-                        text("15").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         container(Svg::from_path("assets/create-plan/spendable_status.svg").width(Length::Fixed(84.)).height(Length::Fixed(25.))).width(166),
 
                     ].align_items(Alignment::Center)).style(
@@ -210,22 +158,13 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                         container(
                             checkbox("", state.third_is_checked).size(16.).spacing(0.).on_toggle(MyAppMessage::ToggleCheckbox3),
                         ).padding([14., 16.]),
-                        text("0.015").size(14).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         row![
-                            text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                            text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                         Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                         ].spacing(8).align_items(Alignment::Center).width(166),
 
-                        text("15").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         container(Svg::from_path("assets/create-plan/pending_status.svg").width(Length::Fixed(68.)).height(Length::Fixed(25.))).width(166),
 
                     ].align_items(Alignment::Center)).style(
@@ -240,22 +179,13 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                         container(
                             checkbox("", state.fifth_is_checked).size(16.).spacing(0.).on_toggle(MyAppMessage::ToggleCheckbox4),
                         ).padding([14., 16.]),
-                        text("0.015").size(14).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         row![
-                            text("wehht6...dgfzdc").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                            text("wehht6...dgfzdc").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                         Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                         ].spacing(8).align_items(Alignment::Center).width(166),
 
-                        text("15").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         container(Svg::from_path("assets/create-plan/pending_status.svg").width(Length::Fixed(68.)).height(Length::Fixed(25.))).width(166),
                     ].align_items(Alignment::Center)).style(
                         Appearance {
@@ -269,22 +199,13 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                         container(
                             checkbox("", state.sixth_is_checked).size(16.).spacing(0.).on_toggle(MyAppMessage::ToggleCheckbox5),
                         ).padding([14., 16.]),
-                        text("0.015").size(14).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("0.015").size(14).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         row![
-                            text("as9sk0...wi9dso").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                            text("as9sk0...wi9dso").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                         Svg::from_path("assets/create-plan/copy_btn.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
                         ].spacing(8).align_items(Alignment::Center).width(166),
 
-                        text("15").size(14).line_height(1.5).font(Font {
-                            weight: font::Weight::Medium,
-                            ..Font::DEFAULT
-                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
+                        text("15").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(166),
                         container(Svg::from_path("assets/create-plan/locked_status.svg").width(Length::Fixed(61.)).height(Length::Fixed(25.))).width(166),
                     ].align_items(Alignment::Center)
                 ].align_items(Alignment::Center)).height(176).direction(Direction::Vertical(Properties::new().scroller_width(4).width(0)))
@@ -299,31 +220,31 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
             row![
                 row![
                     text("1 UTXO").size(16).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                     text("selected").size(16).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.))
                 ].spacing(4).align_items(Alignment::Center),
                 row![
                     text("Total BTC to lock").size(16).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                     text("0.015 BTC").size(16).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                 ].spacing(4).align_items(Alignment::Center),
                 row![
                     text("Time lock duration:").size(16).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(113. /255., 121. /255., 142. /255.)),
                     text("6 months").size(16).font(Font {
-                        weight: font::Weight::Semibold,
+                        weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)),
                 ].spacing(4).align_items(Alignment::Center),
@@ -339,8 +260,8 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
             mouse_area(container(row![
                     container(text(time_clone.clone()).size(14).line_height(1.5).font(Font {
                         weight: match state.selected_time == time_clone {
-                            true => font::Weight::Semibold,
-                            false => font::Weight::Medium
+                            true => font::Weight::Bold,
+                            false => font::Weight::Normal
                         },
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(Length::Fill)),
@@ -361,8 +282,8 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
             mouse_area(container(row![
                     container(text(timezone_clone).size(14).line_height(1.5).font(Font {
                         weight: match state.timezone == timezone_clone {
-                            true => font::Weight::Semibold,
-                            false => font::Weight::Medium
+                            true => font::Weight::Bold,
+                            false => font::Weight::Normal
                         },
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)).width(Length::Fill)),
@@ -528,22 +449,19 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                     container(
                         column![
                             text("PLAN DETAILS").size(14).font(Font {
-                                weight: font::Weight::Semibold,
+                                weight: font::Weight::Bold,
                                 ..Font::DEFAULT
                             }),
                             row![
-                                text("Chosen plan type").size(16).font(Font {
-                                    weight: font::Weight::Medium,
-                                    ..Font::DEFAULT
-                                }).style(Color::from_rgb(0., 0., 0.)),
+                                text("Chosen plan type").size(16).style(Color::from_rgb(0., 0., 0.)),
                                 text("Time Safe").size(16).font(Font {
-                                    weight: font::Weight::Semibold,
+                                    weight: font::Weight::Bold,
                                     ..Font::DEFAULT
                                 }).style(Color::from_rgb(0., 0., 0.)),
                             ].spacing(560),
                             column![
                                 text("Plan name (optional)").size(14).font(Font {
-                                    weight: font::Weight::Semibold,
+                                    weight: font::Weight::Bold,
                                     ..Font::DEFAULT
                                 }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                 text_input("Enter plan’s name", &state.plan_name).style(
@@ -563,14 +481,11 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                         column![
                             row![
                                 text("BENEFICIARY").size(14).font(Font {
-                                    weight: font::Weight::Semibold,
+                                    weight: font::Weight::Bold,
                                     ..Font::DEFAULT
                                 }),
                                 row![
-                                    text("Select UXTOs").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                    text("Select UXTOs").size(16).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                     toggler(None, state.is_selected_uxtos, MyAppMessage::TogglerUxtos).size(24)
                                 ].spacing(12).align_items(Alignment::Center)
                             ].spacing(512).align_items(Alignment::Center),
@@ -580,10 +495,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                                         weight: font::Weight::Bold,
                                         ..Font::DEFAULT
                                     }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)).line_height(1.05),
-                                    text("Choose specific Bitcoin UTXOs you want to lock for recovery. Once locked, these funds will be inaccessible until the recovery conditions are met. Multiple UTXOs will be grouped into a single time-lock transaction.").size(16).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)).line_height(1.5),
+                                    text("Choose specific Bitcoin UTXOs you want to lock for recovery. Once locked, these funds will be inaccessible until the recovery conditions are met. Multiple UTXOs will be grouped into a single time-lock transaction.").size(16).style(Color::from_rgb(0. /255., 0. /255., 0. /255.)).line_height(1.5),
                                     tooltip(
                                         text("What is a UTXO?").size(16).font(Font {
                                             weight: font::Weight::Bold,
@@ -591,10 +503,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                                         }).style(Color::from_rgb(2. /255., 84. /255., 191. /255.)).line_height(1.5),
                                         row![
                                             Svg::from_path("assets/create-plan/tooltip_polygon.svg").width(Length::Fixed(9.)).height(Length::Fixed(21.)),
-                                            container(text("A UTXO (Unspent Transaction Output) represents a specific amount of Bitcoin available for spending. By selecting specific UTXOs, you can control exactly which funds are locked.").line_height(1.5).size(14).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).width(476).height(63)).padding([12.0, 16.0]).style(
+                                            container(text("A UTXO (Unspent Transaction Output) represents a specific amount of Bitcoin available for spending. By selecting specific UTXOs, you can control exactly which funds are locked.").line_height(1.5).size(14).width(476).height(63)).padding([12.0, 16.0]).style(
                                             Appearance {
                                                 text_color: Some(Color::from_rgb(1., 1., 1.)),
                                                 background: Some(Background::Color(Color::from_rgb(0., 62. /255., 144. /255.))),
@@ -645,26 +554,17 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                     container(
                         column![
                             text("UNLOCK DATE").size(14).font(Font {
-                                weight: font::Weight::Semibold,
+                                weight: font::Weight::Bold,
                                 ..Font::DEFAULT
                             }),
 
-                            text("Select the date, time, and timezone when your Bitcoin will be unlocked").size(16).font(Font {
-                                weight: font::Weight::Medium,
-                                ..Font::DEFAULT
-                            }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                            text("Select the date, time, and timezone when your Bitcoin will be unlocked").size(16).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
 
                             row![
                                 column![
-                                    text("Time").size(14).line_height(1.5).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                    text("Time").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                     mouse_area(container(row![
-                                        container(text(state.selected_time.clone()).size(14).line_height(1.5).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
+                                        container(text(state.selected_time.clone()).size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
                                         Svg::from_path("assets/create-plan/clock.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                                     ].width(Length::Fill).align_items(Alignment::Center)).padding([10., 12.]).width(Length::Fill).height(Length::Shrink).style(
                                         match state.is_time_pick_list_visible {
@@ -683,6 +583,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                                         }
                                         
                                     )).on_press(MyAppMessage::TimePickListPressed),
+                                    
                                     match state.is_time_pick_list_visible {
                                         true => container(
                                             Scrollable::new(time_pick_list).height(270).direction(Direction::Vertical(Properties::new().scroller_width(4).width(0)))
@@ -699,15 +600,9 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     
                                 ].width(243).spacing(3),
                                 column![
-                                    text("Date").size(14).line_height(1.5).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                    text("Date").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                     mouse_area(container(row![
-                                        container(text(format!("{} {}, {}", month_names[state.month.clone() as usize - 1] , state.day.clone(), state.year.clone())).size(14).line_height(1.5).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
+                                        container(text(format!("{} {}, {}", state.month_names[state.month.clone() as usize - 1] , state.day.clone(), state.year.clone())).size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
                                         Svg::from_path("assets/create-plan/calendar.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                                     ].width(Length::Fill).align_items(Alignment::Center)).padding([10., 12.]).width(Length::Fill).height(Length::Shrink).style(
                                         match state.is_date_pick_list_visible {
@@ -732,15 +627,9 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     }
                                 ].width(243).spacing(3),
                                 column![
-                                    text("Preferred timezone").size(14).line_height(1.5).font(Font {
-                                        weight: font::Weight::Medium,
-                                        ..Font::DEFAULT
-                                    }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
+                                    text("Preferred timezone").size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
                                     mouse_area(container(row![
-                                        container(text(state.timezone.clone()).size(14).line_height(1.5).font(Font {
-                                            weight: font::Weight::Medium,
-                                            ..Font::DEFAULT
-                                        }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
+                                        container(text(state.timezone.clone()).size(14).line_height(1.5).style(Color::from_rgb(20. /255., 23. /255., 23. /255.))).width(Length::Fill),
                                         Svg::from_path("assets/create-plan/below_arrow.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
                                     ].width(Length::Fill).align_items(Alignment::Center)).padding([10., 12.]).width(Length::Fill).height(Length::Shrink).style(
                                         match state.is_timezone_pick_list_visible {
