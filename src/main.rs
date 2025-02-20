@@ -187,30 +187,49 @@ impl<> text_input::StyleSheet for CustomTextInputStyle {
     }
 }
 
-// struct CustomPickList {}
+struct CustomBtcAmountInputStyle {}
 
-// impl pick_list::StyleSheet for CustomPickList {
-//     type Style = Theme;
-    
-//     fn active(&self, _: &Self::Style) -> pick_list::Appearance {
-//         pick_list::Appearance {
-//             text_color: Color::WHITE,
-//             background: Color::from_rgb(
-//                 0x2F as f32 / 255.0,
-//                 0x31 as f32 / 255.0,
-//                 0x36 as f32 / 255.0,
-//             ).into(),
-//             border: Border { color: Color { r: 236. /255., g: 238. /255., b: 242. /255., a: 100.0.into() }, width: 1.0, radius: Radius::from([10.0, 10.0, 10.0, 10.0]) },
-//             handle_color: Color::from_rgb(0.5, 0.5, 0.5),
-//             placeholder_color: Color::from_rgb(0.7, 0.7, 0.7),
-//         }
-//     }
+impl<> text_input::StyleSheet for CustomBtcAmountInputStyle {
+    type Style = Theme;
 
-//     fn hovered(&self, _: &Self::Style) -> pick_list::Appearance {
-//         let active = self.active(&Theme::default());
+    fn active(&self, _: &Self::Style) -> text_input::Appearance {
+        text_input::Appearance {
+            background: Color::from_rgb(1.0, 1.0, 1.0).into(),  
+            border: Border { color: Color { r: 236. /255., g: 238. /255., b: 242. /255., a: 100.0.into() }, width: 1.0, radius: Radius::from([6.0, 6.0, 6.0, 6.0]) },  // White background when focused
+            icon_color: Color { r: 236. /255., g: 238. /255., b: 242. /255., a: 100.0.into() } // White background when focused
+                   // Gray border
+        }
+    }
 
-//         pick_list::Appearance {
-//             ..active
-//         }
-//     }
-// }
+    fn focused(&self, _: &Self::Style) -> text_input::Appearance {
+        text_input::Appearance {
+            background: Color::from_rgb(1.0, 1.0, 1.0).into(),  
+            border: Border { color: Color { r: 236. /255., g: 238. /255., b: 242. /255., a: 100.0.into() }, width: 1.0, radius: Radius::from([10.0, 10.0, 10.0, 10.0]) },  // White background when focused
+            icon_color: Color { r: 236. /255., g: 238. /255., b: 242. /255., a: 100.0.into() }
+        }
+    }
+
+    fn placeholder_color(&self, _: &Self::Style) -> Color {
+        Color::from_rgb(158. /255., 168. /255., 190. /255.) // Gray placeholder text
+    }
+
+    fn value_color(&self, _: &Self::Style) -> Color {
+        Color::from_rgb(9. /255., 8. /255., 20. /255.) // Dark text color
+    }
+
+    fn selection_color(&self, _: &Self::Style) -> Color {
+        Color::from_rgb(0.8, 0.9, 1.0) // Light blue selection color
+    }
+
+    fn disabled_color(&self, _: &<Self as iced::widget::text_input::StyleSheet>::Style) -> iced::Color {
+        Color::from_rgb(0.2, 0.2, 0.2)
+    }
+
+    fn disabled(&self, _: &<Self as iced::widget::text_input::StyleSheet>::Style) -> text_input::Appearance {
+        text_input::Appearance {
+            background: Color::from_rgb(0.9, 0.9, 0.9).into(),
+            border: Border { color: Color::from_rgba(0.7, 0.7, 0.7, 0.5), width: 1.0, radius: Radius::from([5.0, 5.0, 5.0, 5.0]) },
+            icon_color: Color::from_rgba(0.7, 0.7, 0.7, 0.5),
+        }
+    }
+}

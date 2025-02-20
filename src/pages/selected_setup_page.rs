@@ -1,9 +1,8 @@
 use crate::messages::MyAppMessage;
 use crate::state::State;
 use crate::widgets::calendar::Calendar;
-use crate::{BackButtonColor, ContinueButtonColor, CustomTextInputStyle};
+use crate::{BackButtonColor, ContinueButtonColor, CustomBtcAmountInputStyle, CustomTextInputStyle};
 use iced::advanced::graphics::core::Element;
-use iced::alignment::Vertical;
 use iced::Renderer;
 use iced::{
     self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient, theme,
@@ -63,18 +62,10 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                     )
                 ].spacing(4).align_items(Alignment::Center),
                 row![
-                    container(text("3.926").size(32).font(Font {
-                        weight: font::Weight::Bold,
-                        ..Font::DEFAULT
-                    }).width(227).vertical_alignment(Vertical::Center).horizontal_alignment(iced::alignment::Horizontal::Center)).padding([18.0, 8.0]).style(
-                        Appearance {
-                            text_color: Some(Color::from_rgb(9. /255., 8. /255., 20. /255.)),
-                            background: None,
-                            border: Border { color: Color::from_rgb(236. / 255., 238. / 255., 242. / 255.), width: 1., radius: 6.0.into() },
-                            shadow: Shadow::default(),
-                        }
-                    ),
-                    text("= $280,888.80").size(14).style(Color::from_rgb(138. /255., 146. /255., 165. /255.))
+                    text_input("Enter Lock BTC Amount", &state.lock_btc_amount).style(
+                        theme::TextInput::Custom(Box::new(CustomBtcAmountInputStyle {}))
+                    ).on_input(MyAppMessage::SetLockBtcAmount).size(32).width(227).padding([18.0, 8.0]),
+                    text(format!("= ${:.2}", state.lock_btc_amount.parse::<f32>().unwrap_or(0.0) * 97858.08)).size(14).style(Color::from_rgb(138. /255., 146. /255., 165. /255.))
                 ].align_items(Alignment::Center).spacing(8),
                 row![
                     text("Available: 4.21 BTC").size(14).style(Color::from_rgb(138. /255., 146. /255., 165. /255.)),
@@ -92,9 +83,9 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                         weight: font::Weight::Bold,
                         ..Font::DEFAULT
                     }).style(Color::from_rgb(20. /255., 23. /255., 23. /255.)),
-                    text_input("Enter beneficiary", &state.plan_name).style(
+                    text_input("Enter beneficiary", &state.beneficiary_name).style(
                         theme::TextInput::Custom(Box::new(CustomTextInputStyle {}))
-                    ).padding([10.0, 12.0]).width(227).on_input(MyAppMessage::PlanNameContentChanged)
+                    ).padding([10.0, 12.0]).width(227).on_input(MyAppMessage::BeneficiaryNameContentChanged)
                 ].spacing(2).align_items(Alignment::Start),  
 
             container(column![

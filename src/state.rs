@@ -20,6 +20,7 @@ pub struct State {
     pub time_safe_alert_visible: bool,
     pub current_page: Page,
     pub plan_name: String,
+    pub beneficiary_name: String,
     pub is_selected_uxtos: bool,
     pub recommend_alert_visible: bool,
     pub first_is_checked: bool,
@@ -43,7 +44,8 @@ pub struct State {
     pub year: i32,
     pub timezone: String,
     pub is_timezone_pick_list_visible: bool,
-    pub month_names: Vec<String>
+    pub month_names: Vec<String>,
+    pub lock_btc_amount: String
 }
 
 
@@ -94,7 +96,9 @@ impl Default for State {
             year,
             timezone: "PTC".to_string(),
             is_timezone_pick_list_visible: false,
-            month_names: vec!["Jan".to_string(),"Feb".to_string(),"Mar".to_string(),"Apr".to_string(),"May".to_string(),"Jun".to_string(),"Jul".to_string(),"Aug".to_string(),"Sep".to_string(),"Oct".to_string(),"Nov".to_string(),"Dec".to_string()]
+            month_names: vec!["Jan".to_string(),"Feb".to_string(),"Mar".to_string(),"Apr".to_string(),"May".to_string(),"Jun".to_string(),"Jul".to_string(),"Aug".to_string(),"Sep".to_string(),"Oct".to_string(),"Nov".to_string(),"Dec".to_string()],
+            lock_btc_amount: "0".to_string(),
+            beneficiary_name: "".to_string()
         }
     }
 }

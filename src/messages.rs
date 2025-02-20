@@ -14,6 +14,7 @@ pub enum MyAppMessage {
     GoToFifthCreateNewPlanPage,
     GoToDashboardPage,
     PlanNameContentChanged(String),
+    BeneficiaryNameContentChanged(String),
     TogglerUxtos(bool),
     RecommendAlertCloseBtnPressed,
     ToggleCheckbox1(bool),
@@ -32,5 +33,6 @@ pub enum MyAppMessage {
     DatePickListPressed,
     TimeZonePickListPressed,
     SelectDay(u8),
-    TimeZoneSelected(String)
+    TimeZoneSelected(String),
+    SetLockBtcAmount(String)
 }

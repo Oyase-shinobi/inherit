@@ -42,6 +42,9 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         MyAppMessage::PlanNameContentChanged(content) => {
             state.plan_name = content;
         }
+        MyAppMessage::BeneficiaryNameContentChanged(content) => {
+            state.beneficiary_name = content;
+        }
         MyAppMessage::TogglerUxtos(is_checked) => {
             state.is_selected_uxtos = is_checked;
         }
@@ -113,6 +116,9 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         }
         MyAppMessage::SelectDay(day) => {
             state.day = day
+        }
+        MyAppMessage::SetLockBtcAmount(amount) => {
+            state.lock_btc_amount = amount
         }
     }
 }
