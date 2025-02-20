@@ -468,7 +468,7 @@ pub fn selected_setup_page(state: &State) -> Element<'static, MyAppMessage, Them
                                     theme::TextInput::Custom(Box::new(CustomTextInputStyle {}))
                                 ).padding([10.0, 12.0]).on_input(MyAppMessage::PlanNameContentChanged)
                             ].spacing(2).align_items(Alignment::Start)
-                        ].spacing(24).padding(40).width(840).height(233)
+                        ].spacing(24).padding(40).width(840).height(Length::Shrink)
                     ).style(
                         Appearance {
                             text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
