@@ -41,6 +41,9 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         MyAppMessage::GoToDashboardPage => {
             state.current_page = Page::DashboardPage;
         }
+        MyAppMessage::GoToTsPlanDetailsLockedPage => {
+            state.current_page = Page::TimeSafePlanDetailsLockedPage;
+        }
         MyAppMessage::PlanNameContentChanged(content) => {
             state.plan_name = content;
         }
@@ -90,6 +93,7 @@ pub fn update(state: &mut State, message: MyAppMessage) {
             state.countdown.update();
             state.countdown1.update();
             state.countdown2.update();
+            state.countdown3.update();
         }
         MyAppMessage::TimePickListPressed => {
             state.is_time_pick_list_visible = !state.is_time_pick_list_visible
@@ -124,7 +128,6 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         }
         MyAppMessage::TxLinkCopyBtnPressed(tx_link) => {
             let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
-            println!("{:?}", ctx.get_contents());
             ctx.set_contents(tx_link).unwrap();
             state.is_tx_link_copied = !state.is_tx_link_copied
         }

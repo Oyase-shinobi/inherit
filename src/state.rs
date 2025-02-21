@@ -1,6 +1,8 @@
 use std::time::{Duration, SystemTime};
 
-use crate::widgets::{calendar::Calendar, countdown_timer::CountdownTimer, filter_btn_group::Filter};
+use crate::widgets::{
+    calendar::Calendar, countdown_timer::CountdownTimer, filter_btn_group::Filter,
+};
 
 #[derive(Debug, PartialEq, Clone)]
 
@@ -11,6 +13,7 @@ pub enum Page {
     ForthCreateNewPlanPage,
     FifthCreateNewPlanPage,
     DashboardPage,
+    TimeSafePlanDetailsLockedPage
 }
 
 #[derive(Debug)]
@@ -37,6 +40,7 @@ pub struct State {
     pub countdown: CountdownTimer,
     pub countdown1: CountdownTimer,
     pub countdown2: CountdownTimer,
+    pub countdown3: CountdownTimer,
     pub is_time_pick_list_visible: bool,
     pub is_date_pick_list_visible: bool,
     pub day: u8,
@@ -47,16 +51,20 @@ pub struct State {
     pub month_names: Vec<String>,
     pub lock_btc_amount: String,
     pub transaction_link: String,
-    pub is_tx_link_copied: bool
+    pub is_tx_link_copied: bool,
 }
-
 
 impl Default for State {
     fn default() -> Self {
         let mut times = Vec::new();
         for hour in 0..24 {
             for minute in (0..60).step_by(30) {
-                let time_str = format!("{:02}:{:02} {}", hour % 12, minute, if hour < 12 { "AM" } else { "PM" });
+                let time_str = format!(
+                    "{:02}:{:02} {}",
+                    hour % 12,
+                    minute,
+                    if hour < 12 { "AM" } else { "PM" }
+                );
                 times.push(time_str);
             }
         }
@@ -88,9 +96,26 @@ impl Default for State {
             selected_time: "00:00 AM".to_string(),
             times,
             filter: Filter::Owner,
-            countdown: CountdownTimer::new(SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9), "Unlock date", "purple"),
-            countdown1: CountdownTimer::new(SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9), "Check-in time remaining", "purple"),
-            countdown2: CountdownTimer::new(SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9), "Grace period", "gold"),
+            countdown: CountdownTimer::new(
+                SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9),
+                "Unlock date",
+                "purple",
+            ),
+            countdown1: CountdownTimer::new(
+                SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9),
+                "Check-in time remaining",
+                "purple",
+            ),
+            countdown2: CountdownTimer::new(
+                SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9),
+                "Grace period",
+                "gold",
+            ),
+            countdown3: CountdownTimer::new(
+                SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9),
+                "Unlock in",
+                "blue",
+            ),
             is_time_pick_list_visible: false,
             is_date_pick_list_visible: false,
             day,
@@ -98,11 +123,25 @@ impl Default for State {
             year,
             timezone: "PTC".to_string(),
             is_timezone_pick_list_visible: false,
-            month_names: vec!["Jan".to_string(),"Feb".to_string(),"Mar".to_string(),"Apr".to_string(),"May".to_string(),"Jun".to_string(),"Jul".to_string(),"Aug".to_string(),"Sep".to_string(),"Oct".to_string(),"Nov".to_string(),"Dec".to_string()],
+            month_names: vec![
+                "Jan".to_string(),
+                "Feb".to_string(),
+                "Mar".to_string(),
+                "Apr".to_string(),
+                "May".to_string(),
+                "Jun".to_string(),
+                "Jul".to_string(),
+                "Aug".to_string(),
+                "Sep".to_string(),
+                "Oct".to_string(),
+                "Nov".to_string(),
+                "Dec".to_string(),
+            ],
             lock_btc_amount: "0".to_string(),
             beneficiary_name: "".to_string(),
-            transaction_link: "https://www.blockchain.com/explorer/transactions/btc/f4a8f0379...".to_string(),
-            is_tx_link_copied: false
+            transaction_link: "https://www.blockchain.com/explorer/transactions/btc/f4a8f0379..."
+                .to_string(),
+            is_tx_link_copied: false,
         }
     }
 }

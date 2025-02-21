@@ -24,25 +24,37 @@ impl CountdownTimer {
         let (days, hours, minutes, seconds) = self.format_time();
 
         let time_display = row![
-            column![text(format!("{:03}", days)).size(16).font(Font {
+            column![text(format!("{:03}", days)).size(match self.bg_color {
+                "blue" => 24,
+                _ => 16
+            }).font(Font {
                 weight: font::Weight::Bold,
                 ..Font::DEFAULT
             }).line_height(1.2), text("days").size(12).line_height(1.4)]
                 .align_items(Alignment::Center),
             text(":").size(16),
-            column![text(format!("{:02}", hours)).size(16).font(Font {
+            column![text(format!("{:02}", hours)).size(match self.bg_color {
+                "blue" => 24,
+                _ => 16
+            }).font(Font {
                 weight: font::Weight::Bold,
                 ..Font::DEFAULT
             }).line_height(1.2), text("hours").size(12).line_height(1.4)]
                 .align_items(Alignment::Center),
             text(":").size(16).line_height(1.4),
-            column![text(format!("{:02}", minutes)).size(16).font(Font {
+            column![text(format!("{:02}", minutes)).size(match self.bg_color {
+                "blue" => 24,
+                _ => 16
+            }).font(Font {
                 weight: font::Weight::Bold,
                 ..Font::DEFAULT
             }).line_height(1.2), text("mins").size(12).line_height(1.4)]
                 .align_items(Alignment::Center),
             text(":").size(16).line_height(1.4),
-            column![text(format!("{:02}", seconds)).size(16).font(Font {
+            column![text(format!("{:02}", seconds)).size(match self.bg_color {
+                "blue" => 24,
+                _ => 16
+            }).font(Font {
                 weight: font::Weight::Bold,
                 ..Font::DEFAULT
             }).line_height(1.2), text("secs").size(12).line_height(1.4)]
@@ -50,13 +62,22 @@ impl CountdownTimer {
         ]
         .align_items(Alignment::Center).spacing(5);
 
-        container(column![text(self.title).size(12).line_height(1.4), time_display]
-            .spacing(10).align_items(Alignment::Center)
+        container(column![text(self.title).size(match self.bg_color {
+            "blue" => 14,
+            _ => 12
+        }).line_height(match self.bg_color {
+            "blue" => 1.5,
+            _ => 1.4
+        }), time_display]
+            .spacing(4).align_items(Alignment::Center)
             )
-            .padding([10., 38.])
+            .padding(match self.bg_color {
+                "blue" => 22.5,
+                _ => 10.
+            })
             .align_x(iced::alignment::Horizontal::Center)
             .align_y(iced::alignment::Vertical::Center)
-            .width(Length::Shrink)
+            .width(Length::Fill)
             .height(Length::Shrink)
             .style(
                 match self.bg_color {
@@ -139,6 +160,48 @@ impl CountdownTimer {
                             },
                             shadow: Shadow::default()
                         }
+                    },
+                    "blue" => Appearance {
+                        text_color: Some(Color::from_rgb(255. / 255., 255. / 255., 255. / 255.)),
+                        background: Some(Background::Gradient(Gradient::Linear(Linear {
+                            angle: 90.0.into(),
+                            stops: [
+                                Some(ColorStop {
+                                    offset: 0.0733,
+                                    color: Color {
+                                        r: 53.0 / 255.0,
+                                        g: 229.0 / 255.0,
+                                        b: 171.0 / 255.0,
+                                        a: 1.,
+                                    },
+                                }),
+                                Some(ColorStop {
+                                    offset: 0.5191,
+                                    color: Color {
+                                        r: 62.0 / 255.0,
+                                        g: 112.0 / 255.0,
+                                        b: 253.0 / 255.0,
+                                        a: 1.,
+                                    },
+                                }),
+                                Some(ColorStop {
+                                    offset: 0.939,
+                                    color: Color {
+                                        r: 135.0 / 255.0,
+                                        g: 85.0 / 255.0,
+                                        b: 241.0 / 255.0,
+                                        a: 1.,
+                                    },
+                                }),
+                                None, None, None, None, None,
+                            ]
+                        }))),
+                        border: Border {
+                            color: Color::from_rgba(25. / 255., 71. / 255., 254. / 255., 0.3),
+                            width: 1.0,
+                            radius: 16.0.into()
+                        },
+                        shadow: Shadow::default()
                     },
                     &_ => todo!()
                 }

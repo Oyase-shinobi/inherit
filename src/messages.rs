@@ -13,6 +13,7 @@ pub enum MyAppMessage {
     GoToForthCreateNewPlanBtnPressed,
     GoToFifthCreateNewPlanPage,
     GoToDashboardPage,
+    GoToTsPlanDetailsLockedPage,
     PlanNameContentChanged(String),
     BeneficiaryNameContentChanged(String),
     TogglerUxtos(bool),

@@ -4,6 +4,7 @@ use crate::widgets::filter_btn_group::ButtonGroup;
 use crate::{state::State, ContinueButtonColor};
 
 use iced::theme;
+use iced::widget::mouse_area;
 use iced::{
     self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient,
     widget::{container, container::Appearance, Svg, column, row, text, button, scrollable::{Direction, Properties}, Scrollable},
@@ -163,7 +164,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                     ].width(Length::Fill).align_items(Alignment::End),
                     column![
                         row![
-                            container(column![ 
+                            mouse_area(container(column![ 
                                 row![
                                     container(Svg::from_path("assets/create-plan/guard.svg")
                                         .width(Length::Fixed(40.))
@@ -222,7 +223,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                             shadow: Shadow::default()
                                         
                                     }
-                                    ),
+                                    )).on_press(MyAppMessage::GoToTsPlanDetailsLockedPage),
                             container(column![ 
                                 row![
                                     container(Svg::from_path("assets/create-plan/guard.svg")
