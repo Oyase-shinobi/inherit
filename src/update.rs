@@ -1,7 +1,7 @@
-use iced::clipboard;
-
 use crate::messages::MyAppMessage;
 use crate::state::{State, Page};
+use clipboard::ClipboardProvider;
+use clipboard::ClipboardContext;
 
 pub fn update(state: &mut State, message: MyAppMessage) {
     // self.page = match message {
@@ -123,7 +123,9 @@ pub fn update(state: &mut State, message: MyAppMessage) {
             state.lock_btc_amount = amount
         }
         MyAppMessage::TxLinkCopyBtnPressed(tx_link) => {
-            let _ = clipboard::write::<MyAppMessage>(tx_link);
+            let mut ctx: ClipboardContext = ClipboardProvider::new().unwrap();
+            println!("{:?}", ctx.get_contents());
+            ctx.set_contents(tx_link).unwrap();
             state.is_tx_link_copied = !state.is_tx_link_copied
         }
     }
