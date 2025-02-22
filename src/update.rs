@@ -44,6 +44,9 @@ pub fn update(state: &mut State, message: MyAppMessage) {
         MyAppMessage::GoToTsPlanDetailsLockedPage => {
             state.current_page = Page::TimeSafePlanDetailsLockedPage;
         }
+        MyAppMessage::GoToTsPlanDetailsAvailablePage => {
+            state.current_page = Page::TimeSafePlanDetailsAvailablePage;
+        }
         MyAppMessage::PlanNameContentChanged(content) => {
             state.plan_name = content;
         }

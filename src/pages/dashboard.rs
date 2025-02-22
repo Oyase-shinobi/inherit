@@ -224,7 +224,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                         
                                     }
                                     )).on_press(MyAppMessage::GoToTsPlanDetailsLockedPage),
-                            container(column![ 
+                            mouse_area(container(column![ 
                                 row![
                                     container(Svg::from_path("assets/create-plan/guard.svg")
                                         .width(Length::Fixed(40.))
@@ -286,7 +286,7 @@ pub fn dashboard(state: &State) -> Element<'static, MyAppMessage> {
                                             shadow: Shadow::default()
                                         
                                     }
-                                    ),
+                                    )).on_press(MyAppMessage::GoToTsPlanDetailsAvailablePage),
                             container(column![ 
                                 row![
                                     container(Svg::from_path("assets/create-plan/guard.svg")

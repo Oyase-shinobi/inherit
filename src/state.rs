@@ -13,7 +13,8 @@ pub enum Page {
     ForthCreateNewPlanPage,
     FifthCreateNewPlanPage,
     DashboardPage,
-    TimeSafePlanDetailsLockedPage
+    TimeSafePlanDetailsLockedPage,
+    TimeSafePlanDetailsAvailablePage,
 }
 
 #[derive(Debug)]
@@ -41,6 +42,7 @@ pub struct State {
     pub countdown1: CountdownTimer,
     pub countdown2: CountdownTimer,
     pub countdown3: CountdownTimer,
+    pub countdown4: CountdownTimer,
     pub is_time_pick_list_visible: bool,
     pub is_date_pick_list_visible: bool,
     pub day: u8,
@@ -113,6 +115,11 @@ impl Default for State {
             ),
             countdown3: CountdownTimer::new(
                 SystemTime::now() + Duration::from_secs(321 * 24 * 3600 + 23 * 3600 + 12 * 60 + 9),
+                "Unlock in",
+                "blue",
+            ),
+            countdown4: CountdownTimer::new(
+                SystemTime::now() + Duration::from_secs(0),
                 "Unlock in",
                 "blue",
             ),
