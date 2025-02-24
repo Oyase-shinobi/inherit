@@ -7,6 +7,7 @@ use crate::pages::select_plan_page::select_plan_page;
 use crate::pages::selected_setup_page::selected_setup_page;
 use crate::pages::ts_plan_details_available_page::ts_plan_details_available_page;
 use crate::pages::ts_plan_details_locked_page::ts_plan_details_locked_page;
+use crate::pages::ts_plan_details_processing_page::ts_plan_details_processing_page;
 use crate::state::{State, Page};
 
 pub fn view(state: &State) -> iced::Element<MyAppMessage> {
@@ -19,5 +20,6 @@ pub fn view(state: &State) -> iced::Element<MyAppMessage> {
         Page::DashboardPage => dashboard(state),
         Page::TimeSafePlanDetailsLockedPage => ts_plan_details_locked_page(state),
         Page::TimeSafePlanDetailsAvailablePage => ts_plan_details_available_page(state),
+        Page::TimeSafePlanDetailsProcessingPage => ts_plan_details_processing_page(state),
     }
 }

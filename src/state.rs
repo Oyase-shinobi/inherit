@@ -15,6 +15,7 @@ pub enum Page {
     DashboardPage,
     TimeSafePlanDetailsLockedPage,
     TimeSafePlanDetailsAvailablePage,
+    TimeSafePlanDetailsProcessingPage,
 }
 
 #[derive(Debug)]

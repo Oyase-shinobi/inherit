@@ -1,21 +1,20 @@
 use crate::messages::MyAppMessage;
 use crate::state::State;
-use crate::ContinueButtonColor;
 use iced::advanced::graphics::core::Element;
 use iced::Renderer;
 use iced::{
-    self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient, theme,
-    widget::{container, container::Appearance, Svg, column, Column, row, text, button, Theme, mouse_area, scrollable::{Direction, Properties}, Scrollable},
+    self, Length, Font, Color, Background, Border, Shadow, Alignment, Gradient,
+    widget::{container, container::Appearance, Svg, column, Column, row, text, Theme, mouse_area, scrollable::{Direction, Properties}, Scrollable},
     font,
     gradient::{Linear, ColorStop}
 };
 
-pub fn ts_plan_details_locked_page(state: &State) -> Element<'static, MyAppMessage, Theme, Renderer> {
+pub fn ts_plan_details_processing_page(state: &State) -> Element<'static, MyAppMessage, Theme, Renderer> {
     let recommend_alert = match state.recommend_alert_visible {
         true => row![
             row![
                 Svg::from_path("assets/create-plan/info.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                text("I understand my BTC will be locked and inaccessible until the set time expires.")
+                text("Assets claimed. We will inform you when transaction is confirmed.")
                     .size(14)
                     .width(500)
                     .style(Color::from_rgb(42. / 255., 47. / 255., 53. / 255.))
@@ -381,14 +380,14 @@ pub fn ts_plan_details_locked_page(state: &State) -> Element<'static, MyAppMessa
                         113. /255., 121. /255., 142. /255.
                     ))
                 ).on_press(MyAppMessage::GoToDashboardPage)).padding([12., 0.]),
-            Scrollable::new(column![
+                Scrollable::new(column![
                 column![
                     container(
                         column![
                             row![
                                 container(column![
                                     row![
-                                        Svg::from_path("assets/create-plan/locked_status.svg").width(Length::Fixed(63.)).height(Length::Fixed(25.)),
+                                        Svg::from_path("assets/create-plan/processing_status.svg").width(Length::Fixed(136.)).height(Length::Fixed(25.)),
                                         text("You’re a plan owner").size(12).line_height(1.4).style(Color::from_rgb(113. /255., 121. /255., 142. /255.))
                                     ].spacing(8).align_items(Alignment::Center),
                                     column![
@@ -403,7 +402,7 @@ pub fn ts_plan_details_locked_page(state: &State) -> Element<'static, MyAppMessa
                                     text("ID: 29382-3-423").size(14).line_height(1.5).style(Color::from_rgb(113. /255., 121. /255., 142. /255.))
                                 ).padding([9.5, 0.])        
                             ].width(Length::Fill).align_items(Alignment::Start),
-                            state.countdown3.view(),
+                            recommend_alert,
                             container(column![row![
                                 container(text("Amount time-locked").size(16).line_height(1.5)).width(Length::Fill),
                                 container(row![
@@ -470,28 +469,6 @@ pub fn ts_plan_details_locked_page(state: &State) -> Element<'static, MyAppMessa
                                             Color::from_rgb(113. /255., 121. /255., 142. /255.)
                                         ),
                                     ].align_items(Alignment::End).spacing(4),
-                                    
-                                    container(row![
-                                        Svg::from_path("assets/create-plan/calendar_plus.svg").width(Length::Fixed(24.)).height(Length::Fixed(24.)),
-                                        text("Add to calendar").size(14).line_height(1.5),
-                                        Svg::from_path("assets/create-plan/below_arrow.svg").width(Length::Fixed(16.)).height(Length::Fixed(16.)),
-                                    ].spacing(4).padding([9.5, 16.0]).align_items(Alignment::Center)).style(
-                                        Appearance {
-                                            text_color: Some(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)),
-                                            background: Some(Background::Color(Color::from_rgba(255. / 255., 255. / 255., 255. / 255., 1.))),
-                                            border: Border {
-                                                color: Color::from_rgba (
-                                                    236. / 255.,
-                                                    238. / 255.,
-                                                    242. /255.,
-                                                    100.
-                                                ),
-                                                width: 1.,
-                                                radius: 12.0.into()
-                                            },
-                                            shadow: Shadow::default()
-                                        }
-                                    )
                                 ].align_items(Alignment::End).spacing(4)
                             ].align_items(Alignment::Start).width(Length::Fill)].align_items(Alignment::Center).spacing(16).width(Length::Fill)).padding([20., 24.]).width(Length::Fill).style(
                                 Appearance {
@@ -534,36 +511,6 @@ pub fn ts_plan_details_locked_page(state: &State) -> Element<'static, MyAppMessa
                                     }
                                 ).padding([8.5, 12.0])
                             ].align_items(Alignment::Start).spacing(2),
-                            container(
-                                row![""]
-                            ).style(
-                                Appearance {
-                                    text_color: None,
-                                    background: None,
-                                    border: Border {
-                                        color: Color::from_rgba (
-                                            236. / 255.,
-                                            238. / 255.,
-                                            242. /255.,
-                                            100.
-                                        ),
-                                        width: 1.,
-                                        radius: 0.0.into()
-                                    },
-                                    shadow: Shadow::default()
-                                }
-                            ).width(Length::Fill).height(1),
-                            row![
-                                column![
-                                    text("Add extra protection").size(16).line_height(1.5).style(Color::from_rgb(20. / 255., 23. / 255., 23. / 255.)),
-                                    text("Add extra protection by setting up a fail safe to guard against private key loss or \nunforeseen life events").size(12).line_height(1.4)
-                                    .style(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
-                                ].width(Length::Fill),
-                                button("Link Time Safe to Fail-Safe").style(
-                                    theme::Button::Custom(Box::new(ContinueButtonColor {}))
-                                    // Color::from_rgb(255., 0., 0.)
-                                ).padding([9.5, 16.]).on_press(MyAppMessage::GoToThirdCreateNewPlanBtnPressed)
-                            ].width(Length::Fill).height(Length::Shrink).align_items(Alignment::Start)
                         ].spacing(26).padding(32).width(840).height(Length::Shrink)
                     ).style(
                         Appearance {
@@ -591,29 +538,6 @@ pub fn ts_plan_details_locked_page(state: &State) -> Element<'static, MyAppMessa
                                 }
                             )
                         ].spacing(24).padding(40).width(840).height(Length::Shrink).align_items(Alignment::Start)
-                    ).style(
-                        Appearance {
-                            text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
-                            background: Some(Background::Color(Color::from_rgb(255./ 255., 255./ 255., 255.))),
-                            border: Border { color: Color::from_rgb(205. / 255., 220. / 255., 241. / 255.), width: 1., radius: 32.0.into() },
-                            shadow: Shadow::default(),
-                        }
-                    ),
-                    container(
-                        column![
-                            text("IMPORTANT REMINDERS").size(14).font(Font {
-                                weight: font::Weight::Bold,
-                                ..Font::DEFAULT
-                            }),
-                            container(recommend_alert).style(
-                                Appearance {
-                                    text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
-                                    background: Some(Background::Color(Color::from_rgb(227./ 255., 239./ 255., 1.))),
-                                    border: Border { color: Color::from_rgb(205. / 255., 220. / 255., 241. / 255.), width: 1., radius: 16.0.into() },
-                                    shadow: Shadow::default(),
-                                }
-                            )
-                        ].spacing(24).padding(40).width(840).height(Length::Shrink)
                     ).style(
                         Appearance {
                             text_color: Some(Color::from_rgb(113. / 255., 121. / 255., 142. / 255.)),
