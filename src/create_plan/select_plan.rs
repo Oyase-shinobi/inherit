@@ -6,7 +6,7 @@ use crate::iced::{
         widget::Tree,
         Layout, Widget, Clipboard, Shell
     },
-    Border, Color, Element, Length, Rectangle, Sandbox, Settings, Shadow, Size, Theme, Event, Alignment,
+    Border, Color, Element, Length, Rectangle, Shadow, Size, Theme, Event, Alignment,
     mouse::{self as mouse_enum}
 };
 
@@ -111,16 +111,20 @@ where
                 );
             }
         }
-
-        self.content.as_widget().draw(
-            &state.children[0],
-            renderer,
-            theme,
-            style,
-            layout.children().next().unwrap(),
-            cursor,
-            viewport
-        )
+        if state.children.len() == 0 {
+            
+        } else {
+            self.content.as_widget().draw(
+                &state.children[0],
+                renderer,
+                theme,
+                style,
+                layout.children().next().unwrap(),
+                cursor,
+                viewport
+            )
+        }
+        
     }
 
     fn on_event(
